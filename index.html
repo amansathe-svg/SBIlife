@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBI Life × Greylabs AI — Renewal Engagement Platform</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">
+        <div class="brand-logo-sbi">SBI</div>
+        <div class="brand-logo-x">×</div>
+        <div class="brand-logo-gl">GL</div>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">AI Engagement</div>
+        <div class="brand-sub">Renewal Platform · v1.0</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+
+      <button class="nav-item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span>Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-view="personas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Personas (20)</span>
+      </button>
+
+      <button class="nav-item" data-view="engine">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.3-6.7-2.1 2.1M7.4 16.6l-2.1 2.1m0-14.4 2.1 2.1M16.6 16.6l2.1 2.1"/></svg>
+        <span>AI Engine</span>
+      </button>
+
+      <button class="nav-item" data-view="timeline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <span>SOP Timeline</span>
+      </button>
+
+      <button class="nav-item" data-view="analytics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Analytics</span>
+      </button>
+
+      <div class="nav-section-label" style="margin-top:8px">Settings</div>
+
+      <button class="nav-item" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Configuration</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">GA</div>
+        <div>
+          <div class="user-name">Greylabs AI</div>
+          <div class="user-role">Platform Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <div class="main-content">
+
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="header-left">
+        <div class="page-title" id="pageTitle">Dashboard</div>
+      </div>
+      <div class="header-right">
+        <div class="live-badge">
+          <div class="live-dot"></div>
+          Live &mdash; Aug 10, 2026
+        </div>
+        <div style="font-size:12px;color:var(--text-3);padding:0 8px">SBI Life Renewal Season FY26</div>
+        <button class="header-btn" title="Notifications" style="position:relative">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div class="notif-badge">7</div>
+        </button>
+        <button class="header-btn" title="Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06-.06a2 2 0 0 1-2.83-2.83l.06.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================== VIEWS ===================== -->
+    <div class="view-container">
+
+      <!-- ============= DASHBOARD ============= -->
+      <div class="view active" id="view-dashboard">
+
+        <!-- KPI Row -->
+        <div class="kpi-grid mb20">
+          <div class="kpi-card" style="--accent:#6366F1;--accent-bg:#EDE9FE">
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg></div>
+            <div class="kpi-value">2,45,000</div>
+            <div class="kpi-label">Active Policies Under Management</div>
+            <div class="kpi-delta up">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z" transform="rotate(180 10 10)"/></svg>
+              +3.2% vs last season
+            </div>
+            <div id="spark-coverage" style="margin-top:6px"></div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#059669;--accent-bg:#DCFCE7">
+            <div class="kpi-icon" style="background:#DCFCE7;color:#059669"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+            <div class="kpi-value" style="color:#059669">87.3%</div>
+            <div class="kpi-label">Renewal Rate (Month-to-Date)</div>
+            <div class="kpi-delta up">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z" transform="rotate(180 10 10)"/></svg>
+              +2.1pp vs FY25
+            </div>
+            <div id="spark-renewal" style="margin-top:6px"></div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#DC2626;--accent-bg:#FEE2E2">
+            <div class="kpi-icon" style="background:#FEE2E2;color:#DC2626"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></div>
+            <div class="kpi-value" style="color:#DC2626">18,420</div>
+            <div class="kpi-label">At-Risk Policies (Red Bucket)</div>
+            <div class="kpi-delta down">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z"/></svg>
+              −8.6% from AI intervention
+            </div>
+            <div id="spark-risk" style="margin-top:6px"></div>
+          </div>
+
+          <div class="kpi-card" style="--accent:#D97706;--accent-bg:#FEF3C7">
+            <div class="kpi-icon" style="background:#FEF3C7;color:#D97706"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+            <div class="kpi-value" style="color:#D97706">₹127</div>
+            <div class="kpi-label">Cost per Renewal (Optimised)</div>
+            <div class="kpi-delta up">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z" transform="rotate(180 10 10)"/></svg>
+              ↓15% vs ₹150 baseline (FY25)
+            </div>
+            <div id="spark-cost" style="margin-top:6px"></div>
+          </div>
+        </div>
+
+        <!-- Row 2: Propensity + Channel Performance + Signal feed -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:16px;margin-bottom:16px">
+
+          <!-- Propensity Distribution -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Propensity Distribution</div>
+                <div class="card-sub">2,45,000 active policies</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="donut-wrap">
+                <div id="donut-propensity"></div>
+                <div class="donut-legend">
+                  <div class="legend-item"><div class="legend-dot" style="background:#059669"></div> Green High <span class="legend-val">89.7K</span></div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div> Green Mid <span class="legend-val">55.9K</span></div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#34D399"></div> Green Low <span class="legend-val">13.6K</span></div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#D97706"></div> Amber <span class="legend-val">53.9K</span></div>
+                  <div class="legend-item"><div class="legend-dot" style="background:#DC2626"></div> Red <span class="legend-val">31.8K</span></div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="flex gap-8">
+                <div style="flex:1;text-align:center;">
+                  <div class="metric-lg" style="color:#059669">65%</div>
+                  <div class="metric-sm">Green (Auto-pay eligible)</div>
+                </div>
+                <div style="flex:1;text-align:center;">
+                  <div class="metric-lg" style="color:#DC2626">13%</div>
+                  <div class="metric-sm">Red (Needs intervention)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel Effectiveness -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Channel Effectiveness</div>
+                <div class="card-sub">Conversion rate % by channel</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div id="bar-channel-eff"></div>
+              <div class="divider"></div>
+              <div class="quick-stat">
+                <span class="qs-label">Best ROI Channel</span>
+                <span class="qs-val" style="color:#25D366">WhatsApp</span>
+              </div>
+              <div class="quick-stat">
+                <span class="qs-label">Costliest Channel</span>
+                <span class="qs-val" style="color:#EF4444">Call Center</span>
+              </div>
+              <div class="quick-stat">
+                <span class="qs-label">AI Suppression Saves</span>
+                <span class="qs-val" style="color:#059669">₹2.3Cr/mo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Signal Feed -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Live Engagement Signals</div>
+                <div class="card-sub">Real-time customer interactions</div>
+              </div>
+              <div class="live-badge" style="font-size:10px;padding:3px 8px">
+                <div class="live-dot"></div>
+                Live
+              </div>
+            </div>
+            <div class="card-body" style="padding:8px 16px">
+              <div id="signal-feed" class="signal-feed"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Today's action summary -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Today's Actions</div></div>
+            <div class="card-body">
+              <div class="quick-stat"><span class="qs-label">WhatsApp sent</span><span class="qs-val">47,200</span></div>
+              <div class="quick-stat"><span class="qs-label">SMS sent</span><span class="qs-val">18,400</span></div>
+              <div class="quick-stat"><span class="qs-label">CC calls made</span><span class="qs-val">3,850</span></div>
+              <div class="quick-stat"><span class="qs-label">Voice bot calls</span><span class="qs-val">6,100</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">AI Suppressions Today</div></div>
+            <div class="card-body">
+              <div class="quick-stat"><span class="qs-label">CC calls avoided</span><span class="qs-val trend-up">12,400</span></div>
+              <div class="quick-stat"><span class="qs-label">Green suppr.</span><span class="qs-val trend-up">9,800</span></div>
+              <div class="quick-stat"><span class="qs-label">Promise windows</span><span class="qs-val">1,240</span></div>
+              <div class="quick-stat"><span class="qs-label">Spend saved</span><span class="qs-val trend-up">₹47.1L</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Renewal Collected</div></div>
+            <div class="card-body">
+              <div class="quick-stat"><span class="qs-label">Payments today</span><span class="qs-val" style="color:#059669">2,847</span></div>
+              <div class="quick-stat"><span class="qs-label">Via WhatsApp link</span><span class="qs-val">48%</span></div>
+              <div class="quick-stat"><span class="qs-label">Via Call (UPI/link)</span><span class="qs-val">31%</span></div>
+              <div class="quick-stat"><span class="qs-label">Via SI auto-debit</span><span class="qs-val">21%</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Escalation Queue</div></div>
+            <div class="card-body">
+              <div class="quick-stat"><span class="qs-label">Red → CC (urgent)</span><span class="qs-val trend-down">842</span></div>
+              <div class="quick-stat"><span class="qs-label">SI Failed (T+2)</span><span class="qs-val trend-down">218</span></div>
+              <div class="quick-stat"><span class="qs-label">Payment refused</span><span class="qs-val trend-down">94</span></div>
+              <div class="quick-stat"><span class="qs-label">Field agent needed</span><span class="qs-val">156</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /view-dashboard -->
+
+      <!-- ============= PERSONAS ============= -->
+      <div class="view" id="view-personas">
+        <div class="section-header mb16">
+          <div>
+            <div class="section-title">Customer Personas</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:2px">
+              Click any card to see the AI channel recommendation and full profile.
+              <span id="persona-count" style="font-weight:600;color:var(--text-1)">20 personas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-input">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="persona-search" type="text" placeholder="Search by name, city, occupation…">
+          </div>
+          <button class="filter-btn persona-filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn persona-filter-btn" data-filter="green">🟢 Green</button>
+          <button class="filter-btn persona-filter-btn" data-filter="amber">🟡 Amber</button>
+          <button class="filter-btn persona-filter-btn" data-filter="red">🔴 Red</button>
+          <button class="filter-btn persona-filter-btn" data-filter="si">SI Registered</button>
+          <button class="filter-btn persona-filter-btn" data-filter="non-si">Non-SI</button>
+          <button class="filter-btn persona-filter-btn" data-filter="predue">Pre-Due</button>
+          <button class="filter-btn persona-filter-btn" data-filter="postdue">Post-Due</button>
+        </div>
+
+        <div id="persona-grid" class="persona-grid"></div>
+      </div><!-- /view-personas -->
+
+      <!-- ============= AI ENGINE ============= -->
+      <div class="view" id="view-engine">
+        <div class="section-header mb16">
+          <div>
+            <div class="section-title">AI Channel Recommendation Engine</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:2px">
+              Select a persona to see how the AI engine processes signals and recommends the optimal engagement channel.
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-3)">
+            <div style="width:8px;height:8px;border-radius:50%;background:#6366F1"></div>
+            Rule Engine v2.1 · Last updated: Aug 10, 2026
+          </div>
+        </div>
+
+        <!-- How it works bar -->
+        <div class="card mb16" style="padding:14px 20px">
+          <div style="display:flex;align-items:center;gap:0;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:8px;flex:1">
+              <div style="width:28px;height:28px;border-radius:50%;background:#EDE9FE;color:#6366F1;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</div>
+              <div>
+                <div style="font-size:11px;font-weight:700">Ingest Signals</div>
+                <div style="font-size:10px;color:var(--text-3)">WhatsApp, Call, Chatbot data</div>
+              </div>
+            </div>
+            <div style="color:var(--border);font-size:18px;padding:0 8px">→</div>
+            <div style="display:flex;align-items:center;gap:8px;flex:1">
+              <div style="width:28px;height:28px;border-radius:50%;background:#DBEAFE;color:#1D4ED8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</div>
+              <div>
+                <div style="font-size:11px;font-weight:700">Score Propensity</div>
+                <div style="font-size:10px;color:var(--text-3)">Green / Amber / Red bucket</div>
+              </div>
+            </div>
+            <div style="color:var(--border);font-size:18px;padding:0 8px">→</div>
+            <div style="display:flex;align-items:center;gap:8px;flex:1">
+              <div style="width:28px;height:28px;border-radius:50%;background:#FEF3C7;color:#92400E;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</div>
+              <div>
+                <div style="font-size:11px;font-weight:700">Apply SOP Rules</div>
+                <div style="font-size:10px;color:var(--text-3)">SI, Journey day, Legal</div>
+              </div>
+            </div>
+            <div style="color:var(--border);font-size:18px;padding:0 8px">→</div>
+            <div style="display:flex;align-items:center;gap:8px;flex:1">
+              <div style="width:28px;height:28px;border-radius:50%;background:#DCFCE7;color:#166534;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">4</div>
+              <div>
+                <div style="font-size:11px;font-weight:700">AI Optimise</div>
+                <div style="font-size:10px;color:var(--text-3)">Suppress redundant channels</div>
+              </div>
+            </div>
+            <div style="color:var(--border);font-size:18px;padding:0 8px">→</div>
+            <div style="display:flex;align-items:center;gap:8px;flex:1">
+              <div style="width:28px;height:28px;border-radius:50%;background:#F3E8FF;color:#6B21A8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">5</div>
+              <div>
+                <div style="font-size:11px;font-weight:700">Recommend</div>
+                <div style="font-size:10px;color:var(--text-3)">Channel + Message + Timing</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="engine-select-panel">
+          <div class="engine-persona-list">
+            <div class="engine-persona-list-header">Select a Persona</div>
+            <div class="engine-persona-scroll" id="engine-persona-list"></div>
+          </div>
+          <div class="card" id="engine-result" style="overflow-y:auto">
+            <div id="engine-result-content">
+              <div class="engine-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.3-6.7-2.1 2.1M7.4 16.6l-2.1 2.1m0-14.4 2.1 2.1M16.6 16.6l2.1 2.1"/></svg>
+                <p>Select a persona from the list to run the AI recommendation engine</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /view-engine -->
+
+      <!-- ============= SOP TIMELINE ============= -->
+      <div class="view" id="view-timeline">
+        <div class="section-header mb16">
+          <div>
+            <div class="section-title">SOP Communication Timeline</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:2px">
+              Full channel matrix from T-60 (E-Mandate push) to T+360 (long-tail revival). Click any row for details.
+            </div>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="card mb16" style="padding:12px 16px">
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+            <span style="font-size:11px;font-weight:700;color:var(--text-3)">CHANNEL LEGEND:</span>
+            <span class="sop-channel-tag" style="background:#DCFCE7;color:#25D366;padding:3px 9px;font-size:11px">
+              <span style="width:11px;height:11px"></span>WhatsApp</span>
+            <span class="sop-channel-tag" style="background:#DBEAFE;color:#3B82F6;padding:3px 9px;font-size:11px">SMS</span>
+            <span class="sop-channel-tag" style="background:#EDE9FE;color:#8B5CF6;padding:3px 9px;font-size:11px">Email</span>
+            <span class="sop-channel-tag" style="background:#FEF3C7;color:#F59E0B;padding:3px 9px;font-size:11px">Voice Bot (Ubona)</span>
+            <span class="sop-channel-tag" style="background:#CFFAFE;color:#06B6D4;padding:3px 9px;font-size:11px">Chatbot (Sarvam)</span>
+            <span class="sop-channel-tag" style="background:#FCE7F3;color:#EC4899;padding:3px 9px;font-size:11px">Saaspot Creative</span>
+            <span class="sop-channel-tag" style="background:#FEE2E2;color:#EF4444;padding:3px 9px;font-size:11px">Call Center</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:0;font-size:11px;font-weight:700;color:var(--text-3)">
+            <div style="width:64px">DAY</div>
+            <div style="flex:1">ACTIVE CHANNELS</div>
+            <div style="width:220px;text-align:right">TARGET / NOTE</div>
+          </div>
+          <div style="padding:0 4px 12px;" id="sop-timeline-container"></div>
+        </div>
+      </div><!-- /view-timeline -->
+
+      <!-- ============= ANALYTICS ============= -->
+      <div class="view" id="view-analytics">
+        <div class="section-header mb16">
+          <div class="section-title">Platform Analytics</div>
+        </div>
+
+        <!-- Top row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Channel Performance</div>
+              <div class="card-sub">Conversion rate & cost/contact</div>
+            </div>
+            <div class="card-body" style="padding:12px 16px">
+              <div id="channel-perf-list"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Monthly Renewal Rate</div></div>
+            <div class="card-body">
+              <div id="bar-monthly-trend"></div>
+              <div class="divider"></div>
+              <div class="quick-stat"><span class="qs-label">Aug MTD (FY26)</span><span class="qs-val trend-up" style="color:#4F46E5">87.3%</span></div>
+              <div class="quick-stat"><span class="qs-label">FY25 Full Year</span><span class="qs-val">84.8%</span></div>
+              <div class="quick-stat"><span class="qs-label">AI Uplift</span><span class="qs-val trend-up">+2.5pp</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Renewal by Propensity Bucket</div></div>
+            <div class="card-body">
+              <div id="bar-bucket-renewal"></div>
+              <div class="divider"></div>
+              <div class="quick-stat"><span class="qs-label">Green (All) Avg</span><span class="qs-val trend-up" style="color:#059669">91%</span></div>
+              <div class="quick-stat"><span class="qs-label">Amber Avg</span><span class="qs-val" style="color:#D97706">72%</span></div>
+              <div class="quick-stat"><span class="qs-label">Red Avg</span><span class="qs-val trend-down" style="color:#DC2626">48%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px">
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Cost Optimisation</div></div>
+            <div class="card-body" style="text-align:center">
+              <div id="donut-savings" style="margin:0 auto"></div>
+              <div class="divider"></div>
+              <div class="quick-stat"><span class="qs-label">Before AI (FY25)</span><span class="qs-val">₹150/renewal</span></div>
+              <div class="quick-stat"><span class="qs-label">After AI (FY26)</span><span class="qs-val trend-up">₹127/renewal</span></div>
+              <div class="quick-stat"><span class="qs-label">Monthly saving</span><span class="qs-val trend-up" style="color:#059669">₹2.3 Cr</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">CC Suppression Impact</div></div>
+            <div class="card-body">
+              <div style="margin-bottom:12px">
+                <div class="metric-lg" style="color:#6366F1">12,400</div>
+                <div class="metric-sm">CC calls avoided today by AI</div>
+              </div>
+              <div class="divider"></div>
+              <div class="quick-stat"><span class="qs-label">@ ₹380/call</span><span class="qs-val trend-up">₹47.1L saved</span></div>
+              <div class="quick-stat"><span class="qs-label">Green suppr. calls</span><span class="qs-val">9,800</span></div>
+              <div class="quick-stat"><span class="qs-label">Promise windows</span><span class="qs-val">1,240</span></div>
+              <div class="quick-stat"><span class="qs-label">Chatbot deflections</span><span class="qs-val">1,360</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">SI vs Non-SI Split</div></div>
+            <div class="card-body">
+              <div style="display:flex;gap:12px;margin-bottom:12px">
+                <div style="flex:1;background:#DBEAFE;border-radius:10px;padding:12px;text-align:center">
+                  <div class="metric-lg" style="color:#1D4ED8">57%</div>
+                  <div class="metric-sm">SI Registered</div>
+                </div>
+                <div style="flex:1;background:#F1F5F9;border-radius:10px;padding:12px;text-align:center">
+                  <div class="metric-lg" style="color:#475569">43%</div>
+                  <div class="metric-sm">Non-SI</div>
+                </div>
+              </div>
+              <div class="quick-stat"><span class="qs-label">SI Renewal rate</span><span class="qs-val trend-up" style="color:#059669">94.1%</span></div>
+              <div class="quick-stat"><span class="qs-label">Non-SI renewal rate</span><span class="qs-val" style="color:#D97706">78.4%</span></div>
+              <div class="quick-stat"><span class="qs-label">SI failure rate (this mo.)</span><span class="qs-val trend-down">3.2%</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Grace Period Conversion</div></div>
+            <div class="card-body">
+              <div style="margin-bottom:12px">
+                <div class="metric-lg" style="color:#D97706">85%</div>
+                <div class="metric-sm">of late payers collected by T+30</div>
+              </div>
+              <div class="divider"></div>
+              <div class="quick-stat"><span class="qs-label">By T+5</span><span class="qs-val">38%</span></div>
+              <div class="quick-stat"><span class="qs-label">By T+15</span><span class="qs-val">61%</span></div>
+              <div class="quick-stat"><span class="qs-label">By T+30</span><span class="qs-val">85%</span></div>
+              <div class="quick-stat"><span class="qs-label">Revival (T+30+)</span><span class="qs-val" style="color:#DC2626">15%</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /view-analytics -->
+
+    </div><!-- /view-container -->
+  </div><!-- /main-content -->
+</div><!-- /app-shell -->
+
+<!-- ===================== PERSONA MODAL ===================== -->
+<div class="modal-overlay" id="personaModal">
+  <div class="modal-panel">
+    <div class="modal-header" id="modalHeader">
+      <!-- Filled by JS -->
+      <div class="modal-avatar" id="modalAvatar" style="background:#6366F1">–</div>
+      <div class="modal-persona-info">
+        <div class="modal-persona-name" id="modalName">Loading…</div>
+        <div class="modal-persona-sub" id="modalSub"></div>
+        <div class="modal-persona-tags" id="modalTags"></div>
+      </div>
+      <button class="modal-close" id="modalClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Filled by openPersonaModal() -->
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="data/personas.js"></script>
+<script src="data/channels.js"></script>
+<script src="js/recommendations.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
