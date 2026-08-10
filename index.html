@@ -12,16 +12,26 @@
 
   <!-- ===================== SIDEBAR ===================== -->
   <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="brand-logo">
-        <div class="brand-logo-sbi">SBI</div>
-        <div class="brand-logo-x">×</div>
-        <div class="brand-logo-gl">GL</div>
-      </div>
-      <div class="brand-text">
-        <div class="brand-name">AI Engagement</div>
-        <div class="brand-sub">Renewal Platform · v1.0</div>
-      </div>
+    <div class="sidebar-brand" style="display:block;padding:18px 16px 14px">
+      <svg viewBox="0 0 210 58" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:190px;display:block">
+        <defs>
+          <linearGradient id="sbiLifeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#E8194B"/>
+            <stop offset="100%" stop-color="#702B8C"/>
+          </linearGradient>
+        </defs>
+        <!-- Cyan circle -->
+        <circle cx="24" cy="22" r="20" fill="#00AEEF"/>
+        <!-- White keyhole/person icon -->
+        <circle cx="24" cy="14" r="7" fill="white"/>
+        <path d="M13 31 Q24 20 35 31 Q29.5 40 24 40 Q18.5 40 13 31Z" fill="white"/>
+        <!-- SBI (white for dark sidebar) -->
+        <text x="50" y="33" font-family="'Arial Black','Arial Bold',sans-serif" font-weight="900" font-size="27" fill="white">SBI</text>
+        <!-- Life (pink → purple gradient) -->
+        <text x="109" y="33" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="27" fill="url(#sbiLifeGrad)">Life</text>
+        <!-- Subtitle -->
+        <text x="50" y="51" font-family="Arial,sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" letter-spacing="0.3">Renewal Platform · v1.0</text>
+      </svg>
     </div>
 
     <nav class="sidebar-nav">
