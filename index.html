@@ -54,8 +54,8 @@
 
       <div class="nav-section-label" style="margin-top:8px">Settings</div>
 
-      <button class="nav-item" data-view="dashboard">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <button class="nav-item" data-view="configuration">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span>Configuration</span>
       </button>
     </nav>
@@ -522,6 +522,73 @@
 
         </div>
       </div><!-- /view-analytics -->
+
+      <!-- ============= CONFIGURATION ============= -->
+      <div class="view" id="view-configuration">
+        <div class="section-header mb16">
+          <div>
+            <div class="section-title">Platform Configuration</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:2px">
+              AI suppression rules, channel parameters, and system settings · Rule Engine v2.1 · Aug 10, 2026
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px">
+
+          <!-- Suppression Rules -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">AI Suppression Rules</div>
+                <div class="card-sub">Active rules that override the SOP channel matrix</div>
+              </div>
+              <span class="badge" style="background:#DCFCE7;color:#166534">6 Active</span>
+            </div>
+            <div class="card-body" style="padding:0 16px 12px">
+              <div id="suppression-rules-list"></div>
+            </div>
+          </div>
+
+          <!-- Right column: Settings + Thresholds -->
+          <div class="flex-col gap-16">
+            <div class="card">
+              <div class="card-header"><div class="card-title">Platform Settings</div></div>
+              <div class="card-body">
+                <div class="quick-stat"><span class="qs-label">Rule Engine Version</span><span class="qs-val">v2.1</span></div>
+                <div class="quick-stat"><span class="qs-label">Promise Window</span><span class="qs-val">48 hours</span></div>
+                <div class="quick-stat"><span class="qs-label">SI T+1 Grace</span><span class="qs-val">1 business day</span></div>
+                <div class="quick-stat"><span class="qs-label">Lapsed CC Threshold</span><span class="qs-val">T+30</span></div>
+                <div class="quick-stat"><span class="qs-label">Chatbot Suppression</span><span class="qs-val">Pre-Due only</span></div>
+                <div class="quick-stat"><span class="qs-label">Total Policies Managed</span><span class="qs-val">2,45,000</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">Propensity Thresholds</div></div>
+              <div class="card-body">
+                <div class="quick-stat"><span class="qs-label">Green High (≥ 0.85)</span><span class="qs-val" style="color:#059669">89,750 policies</span></div>
+                <div class="quick-stat"><span class="qs-label">Green Mid (0.65–0.84)</span><span class="qs-val" style="color:#10B981">55,900 policies</span></div>
+                <div class="quick-stat"><span class="qs-label">Green Low (0.50–0.64)</span><span class="qs-val" style="color:#34D399">13,600 policies</span></div>
+                <div class="quick-stat"><span class="qs-label">Amber (0.30–0.49)</span><span class="qs-val" style="color:#D97706">53,900 policies</span></div>
+                <div class="quick-stat"><span class="qs-label">Red (&lt; 0.30)</span><span class="qs-val" style="color:#DC2626">31,850 policies</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Channel Configuration -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Channel Configuration</div>
+              <div class="card-sub">Success rate (gauge), cost per contact, and delivery metrics</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="channel-config-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:4px 0"></div>
+          </div>
+        </div>
+      </div><!-- /view-configuration -->
 
     </div><!-- /view-container -->
   </div><!-- /main-content -->

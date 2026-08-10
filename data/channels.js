@@ -162,6 +162,13 @@ const MESSAGE_TEMPLATES = {
     callToAction: "Revive My Policy",
     urgency: "medium"
   },
+  "si-failed-full-escalation": {
+    tone: "critical",
+    subject: "URGENT: Auto-debit failed — Policy {policyNumber} at risk of lapse",
+    body: "Dear {name}, your SI auto-debit of ₹{amount} for policy {policyNumber} has failed. To protect your policy and sum assured, please make an immediate manual payment. Grace period is now active — your policy will lapse if payment is not received by {lapseDate}. – SBI Life Insurance",
+    callToAction: "Pay Now to Save My Policy",
+    urgency: "critical"
+  },
   "warmup-brand": {
     tone: "warm",
     subject: "A year ago, you made a great decision 🌟",

@@ -256,7 +256,7 @@ function getChannelRecommendation(persona) {
   // POST-DUE GRACE PERIOD (T+1 to T+30)
   // -------------------------------------------------------
   if (journeyDay >= 2 && journeyDay <= 30) {
-    result.messageType = "grace-period-warning";
+    if (!result.messageType) result.messageType = "grace-period-warning";
     result.urgencyLevel = "critical";
     result.reasoning.push(`⏰ T+${journeyDay}: Grace period. ${85}% of renewals collected before T+30. Full escalation active.`);
     if (signals.callOutcome === "refused") {

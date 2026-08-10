@@ -622,6 +622,50 @@ function initAnalytics() {
   ], { size: 120, strokeWidth: 22, centerLabel: '73%', centerSub: 'Saved' });
 }
 
+// ---- Configuration Page ----
+function initConfiguration() {
+  const rulesList = document.getElementById('suppression-rules-list');
+  if (rulesList) {
+    const ruleSavings = [62, 74, 48, 38, 99, 55];
+    rulesList.innerHTML = SUPPRESSION_RULES.map((rule, i) => `
+      <div style="padding:12px 0;border-bottom:1px solid var(--border-light)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#059669;flex-shrink:0"></div>
+          <div style="font-size:12px;font-weight:700;color:var(--text-1);flex:1">${rule.name}</div>
+          <span class="badge" style="background:#DCFCE7;color:#166534;font-size:10px">${ruleSavings[i]}% effective</span>
+        </div>
+        <div style="font-size:11px;color:var(--text-3);margin-bottom:6px;padding-left:16px">${rule.reason}</div>
+        <div style="padding-left:16px"><div id="rule-bar-${i}"></div></div>
+      </div>`).join('');
+    SUPPRESSION_RULES.forEach((_, i) => {
+      renderConfidenceBar(`rule-bar-${i}`, ruleSavings[i], '#059669', `${ruleSavings[i]}%`);
+    });
+  }
+
+  const grid = document.getElementById('channel-config-grid');
+  if (grid) {
+    grid.innerHTML = Object.values(CHANNEL_CONFIG).map((ch, i) => `
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <div style="width:30px;height:30px;border-radius:8px;background:${ch.bgColor};color:${ch.color};display:flex;align-items:center;justify-content:center">
+            <span style="width:16px;height:16px">${CHANNEL_ICONS[ch.icon] || ''}</span>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text-1)">${ch.label}</div>
+        </div>
+        <div style="text-align:center;margin:6px 0">
+          <div id="gauge-ch-${i}"></div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:2px">Success rate</div>
+        </div>
+        <div class="quick-stat" style="padding:6px 0;border-bottom:none"><span class="qs-label">Cost/contact</span><span class="qs-val">₹${ch.costPerContact}</span></div>
+        <div class="quick-stat" style="padding:6px 0;border:none"><span class="qs-label">Delivery rate</span><span class="qs-val">${ch.avgDeliveryRate}%</span></div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:6px;line-height:1.4">${ch.desc}</div>
+      </div>`).join('');
+    Object.values(CHANNEL_CONFIG).forEach((ch, i) => {
+      renderGauge(`gauge-ch-${i}`, ch.avgSuccessRate, 50, ch.color);
+    });
+  }
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   initDashboard();
@@ -629,4 +673,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initEngine();
   initTimeline();
   initAnalytics();
+  initConfiguration();
 });
