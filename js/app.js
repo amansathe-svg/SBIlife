@@ -387,10 +387,10 @@ function buildModalContent(p, rec, bucket) {
           <div class="ai-channel-icon" style="background:rgba(255,255,255,.15);color:${primaryColor}">
             <span style="width:18px;height:18px">${CHANNEL_ICONS[channelIconKey]||''}</span>
           </div>
-          <div>
+          <div style="flex:1">
             <div class="ai-channel-label">${rec.primary || 'Analysing…'}</div>
             <div class="ai-channel-sub">Primary Recommended Channel</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:4px;font-style:italic">${rec.channels[0]?.reason || ''}</div>
+            ${rec.channels[0]?.reason ? `<div style="display:flex;align-items:flex-start;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:5px 8px;margin-top:6px"><span style="font-size:11px;flex-shrink:0">💡</span><span style="font-size:11px;color:rgba(255,255,255,.9);line-height:1.4">${rec.channels[0].reason}</span></div>` : ''}
           </div>
         </div>
         <div class="ai-score-col" style="min-width:80px">

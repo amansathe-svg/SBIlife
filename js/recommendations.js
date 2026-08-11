@@ -234,17 +234,17 @@ function getChannelRecommendation(persona) {
     result.reasoning.push("🔔 Due date: All channels active for Non-SI, Non-Green customers.");
     if (isGreen) {
       result.suppressed.push({ key: "callcenter", label: "Call Center", reason: "Green: Green customers historically pay on due date — no call" });
-      result.channels.push({ key: "whatsapp", label: "WhatsApp", priority: 1 });
-      result.channels.push({ key: "sms",      label: "SMS",      priority: 2 });
+      result.channels.push({ key: "whatsapp", label: "WhatsApp", priority: 1, reason: "Green bucket: digital-only on due date — high propensity to self-pay" });
+      result.channels.push({ key: "sms",      label: "SMS",      priority: 2, reason: "SMS fallback if WhatsApp undelivered" });
       result.primary = "WhatsApp";
       result.confidenceScore = 89;
     } else {
-      result.channels.push({ key: "callcenter", label: "Call Center",    priority: 1 });
-      result.channels.push({ key: "voicebot",   label: "Voice Bot",      priority: 2 });
-      result.channels.push({ key: "whatsapp",   label: "WhatsApp",       priority: 3 });
-      result.channels.push({ key: "chatbot",    label: "AI Chatbot",     priority: 4 });
-      result.channels.push({ key: "saaspot",    label: "Saaspot Creative", priority: 5 });
-      result.channels.push({ key: "sms",        label: "SMS",            priority: 6 });
+      result.channels.push({ key: "callcenter", label: "Call Center",      priority: 1, reason: isRed ? "Red bucket on due date: human agent has highest conversion rate" : "Non-green on due date: CC maximises same-day payment probability" });
+      result.channels.push({ key: "voicebot",   label: "Voice Bot",        priority: 2, reason: "Automated voice reminder — scales across high contact volume" });
+      result.channels.push({ key: "whatsapp",   label: "WhatsApp",         priority: 3, reason: "Payment link delivery — highest open rate of digital channels" });
+      result.channels.push({ key: "chatbot",    label: "AI Chatbot",       priority: 4, reason: "Sarvam chatbot for assisted self-service payment" });
+      result.channels.push({ key: "saaspot",    label: "Saaspot Creative", priority: 5, reason: "Urgency creative to reinforce premium due message" });
+      result.channels.push({ key: "sms",        label: "SMS",              priority: 6, reason: "SMS broadcast fallback — highest delivery rate" });
       result.primary = "Call Center";
       result.confidenceScore = 72;
     }
