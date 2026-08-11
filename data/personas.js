@@ -1,10 +1,10 @@
 // =============================================================
-// data/personas.js — SBI Life AI Engagement Platform
-// Colleague: add/modify personas here. Each object maps to one
-// policyholder card in the Personas view.
+// data/customers.js — SBI Life AI Engagement Platform
+// Colleague: add/modify customers here. Each object maps to one
+// policyholder card in the Customers view.
 // =============================================================
 
-const PERSONAS = [
+const CUSTOMERS = [
   {
     id: 1,
     name: "Ramesh Kumar",

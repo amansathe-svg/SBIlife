@@ -82,7 +82,7 @@ function startSignalFeed() {
   setInterval(() => {
     // Rotate signals to simulate live feed
     SIGNALS.unshift({
-      name: PERSONAS[Math.floor(Math.random() * PERSONAS.length)].name,
+      name: CUSTOMERS[Math.floor(Math.random() * CUSTOMERS.length)].name,
       desc: ["Opened WhatsApp reminder", "Payment link clicked", "Call answered — processing payment", "Chatbot interaction"][Math.floor(Math.random()*4)],
       icon: ["wa","cb","cc","voice"][Math.floor(Math.random()*4)],
       color: ["#25D366","#06B6D4","#EF4444","#F59E0B"][Math.floor(Math.random()*4)],
@@ -101,7 +101,7 @@ function startSignalFeed() {
   }, 8000);
 }
 
-// ---- Personas View ----
+// ---- Customers View ----
 let activeFilter = 'all';
 let searchQuery = '';
 
@@ -134,7 +134,7 @@ function getEngagementColor(score) {
   return '#DC2626';
 }
 
-function renderPersonaCard(p) {
+function renderCustomerCard(p) {
   const rec = getChannelRecommendation(p);
   const bucket = getBucketInfo(p.propensityBucket);
   const jStyle = getJourneyStyle(p.journeyDay);
@@ -145,17 +145,17 @@ function renderPersonaCard(p) {
   const channelIconKey = chanConf?.icon || 'wa';
 
   return `
-    <div class="persona-card" data-id="${p.id}" onclick="openPersonaModal(${p.id})">
-      <div class="persona-card-header">
-        <div class="persona-avatar" style="background:${p.avatarColor}">${p.initials}</div>
-        <div class="persona-info">
-          <div class="persona-name">${p.name}</div>
-          <div class="persona-sub">${p.occupation} · ${p.city}</div>
-          <div class="persona-sub" style="margin-top:2px">Policy: ${p.policyNumber.slice(-6)}</div>
+    <div class="customer-card" data-id="${p.id}" onclick="openCustomerModal(${p.id})">
+      <div class="customer-card-header">
+        <div class="customer-avatar" style="background:${p.avatarColor}">${p.initials}</div>
+        <div class="customer-info">
+          <div class="customer-name">${p.name}</div>
+          <div class="customer-sub">${p.occupation} · ${p.city}</div>
+          <div class="customer-sub" style="margin-top:2px">Policy: ${p.policyNumber.slice(-6)}</div>
         </div>
       </div>
 
-      <div class="persona-badges">
+      <div class="customer-badges">
         <span class="badge ${getBucketClass(p.propensityBucket)}" title="Propensity Bucket">
           ${bucket.label}
         </span>
@@ -167,7 +167,7 @@ function renderPersonaCard(p) {
         </span>
       </div>
 
-      <div class="persona-metrics">
+      <div class="customer-metrics">
         <div class="journey-day-badge" style="background:${jStyle.bg};color:${jStyle.color};">
           <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/></svg>
           Journey: ${formatJourneyDay(p.journeyDay)}
@@ -196,13 +196,13 @@ function renderPersonaCard(p) {
     </div>`;
 }
 
-function initPersonas() {
-  const grid = document.getElementById('persona-grid');
-  const searchEl = document.getElementById('persona-search');
-  const filters = document.querySelectorAll('.persona-filter-btn');
+function initCustomers() {
+  const grid = document.getElementById('customer-grid');
+  const searchEl = document.getElementById('customer-search');
+  const filters = document.querySelectorAll('.customer-filter-btn');
 
   function render() {
-    let list = PERSONAS;
+    let list = CUSTOMERS;
     if (activeFilter !== 'all') {
       list = list.filter(p => {
         if (activeFilter === 'green')   return p.propensityBucket.startsWith('green');
@@ -225,9 +225,9 @@ function initPersonas() {
       );
     }
     grid.innerHTML = list.length
-      ? list.map(renderPersonaCard).join('')
-      : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">No personas match your filters.</div>';
-    document.getElementById('persona-count').textContent = list.length + ' personas';
+      ? list.map(renderCustomerCard).join('')
+      : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">No customers match your filters.</div>';
+    document.getElementById('customer-count').textContent = list.length + ' customers';
   }
 
   filters.forEach(btn => {
@@ -244,8 +244,8 @@ function initPersonas() {
 }
 
 // ---- Modal ----
-function openPersonaModal(id) {
-  const p = PERSONAS.find(x => x.id === id);
+function openCustomerModal(id) {
+  const p = CUSTOMERS.find(x => x.id === id);
   if (!p) return;
   const rec = getChannelRecommendation(p);
   const bucket = getBucketInfo(p.propensityBucket);
@@ -269,7 +269,7 @@ function openPersonaModal(id) {
     </span>`;
 
   document.getElementById('modalBody').innerHTML = buildModalContent(p, rec, bucket);
-  document.getElementById('personaModal').classList.add('open');
+  document.getElementById('customerModal').classList.add('open');
 }
 
 function buildModalContent(p, rec, bucket) {
@@ -565,20 +565,20 @@ function buildModalContent(p, rec, bucket) {
 
 // Close modal
 document.getElementById('modalClose')?.addEventListener('click', () => {
-  document.getElementById('personaModal').classList.remove('open');
+  document.getElementById('customerModal').classList.remove('open');
 });
-document.getElementById('personaModal')?.addEventListener('click', e => {
-  if (e.target === document.getElementById('personaModal')) {
-    document.getElementById('personaModal').classList.remove('open');
+document.getElementById('customerModal')?.addEventListener('click', e => {
+  if (e.target === document.getElementById('customerModal')) {
+    document.getElementById('customerModal').classList.remove('open');
   }
 });
 
 // ---- AI Engine Page ----
 function initEngine() {
-  const list = document.getElementById('engine-persona-list');
-  list.innerHTML = PERSONAS.map(p => {
+  const list = document.getElementById('engine-customer-list');
+  list.innerHTML = CUSTOMERS.map(p => {
     const jStyle = getJourneyStyle(p.journeyDay);
-    return `<div class="engine-persona-item" data-id="${p.id}" onclick="selectEnginePersona(${p.id})">
+    return `<div class="engine-customer-item" data-id="${p.id}" onclick="selectEngineCustomer(${p.id})">
       <div class="ep-avatar" style="background:${p.avatarColor}">${p.initials}</div>
       <div class="ep-info">
         <div class="ep-name">${p.name}</div>
@@ -589,9 +589,9 @@ function initEngine() {
   }).join('');
 }
 
-function selectEnginePersona(id) {
-  document.querySelectorAll('.engine-persona-item').forEach(el => el.classList.remove('active'));
-  document.querySelector(`.engine-persona-item[data-id="${id}"]`)?.classList.add('active');
+function selectEngineCustomer(id) {
+  document.querySelectorAll('.engine-customer-item').forEach(el => el.classList.remove('active'));
+  document.querySelector(`.engine-customer-item[data-id="${id}"]`)?.classList.add('active');
 
   const result = document.getElementById('engine-result-content');
   result.innerHTML = `
@@ -601,7 +601,7 @@ function selectEnginePersona(id) {
     </div>`;
 
   setTimeout(() => {
-    const p = PERSONAS.find(x => x.id === id);
+    const p = CUSTOMERS.find(x => x.id === id);
     if (!p) return;
     const rec = getChannelRecommendation(p);
     const bucket = getBucketInfo(p.propensityBucket);
@@ -772,7 +772,7 @@ function initTemplates() {
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   initDashboard();
-  initPersonas();
+  initCustomers();
   initEngine();
   initTimeline();
   initAnalytics();

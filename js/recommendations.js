@@ -1,15 +1,15 @@
 // =============================================================
 // js/recommendations.js — AI Channel Recommendation Engine
 // Core logic for deciding the optimal engagement channel
-// per persona based on propensity, SI status, journey phase,
+// per customer based on propensity, SI status, journey phase,
 // and recent interaction signals.
 // =============================================================
 
-function getChannelRecommendation(persona) {
+function getChannelRecommendation(customer) {
   const {
     propensityBucket, siStatus, siHealth, journeyDay,
     digitalEngagement, previousLapses, signals
-  } = persona;
+  } = customer;
 
   const result = {
     primary: null,

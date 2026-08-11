@@ -34,9 +34,9 @@
         <span>Dashboard</span>
       </button>
 
-      <button class="nav-item" data-view="personas">
+      <button class="nav-item" data-view="customers">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span>Personas (20)</span>
+        <span>Customers (20)</span>
       </button>
 
       <button class="nav-item" data-view="engine">
@@ -280,14 +280,14 @@
 
       </div><!-- /view-dashboard -->
 
-      <!-- ============= PERSONAS ============= -->
-      <div class="view" id="view-personas">
+      <!-- ============= CUSTOMERS ============= -->
+      <div class="view" id="view-customers">
         <div class="section-header mb16">
           <div>
-            <div class="section-title">Customer Personas</div>
+            <div class="section-title">Customers</div>
             <div style="font-size:12px;color:var(--text-3);margin-top:2px">
               Click any card to see the AI channel recommendation and full profile.
-              <span id="persona-count" style="font-weight:600;color:var(--text-1)">20 personas</span>
+              <span id="customer-count" style="font-weight:600;color:var(--text-1)">20 customers</span>
             </div>
           </div>
         </div>
@@ -295,20 +295,20 @@
         <div class="filter-bar">
           <div class="search-input">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input id="persona-search" type="text" placeholder="Search by name, city, occupation…">
+            <input id="customer-search" type="text" placeholder="Search by name, city, occupation…">
           </div>
-          <button class="filter-btn persona-filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn persona-filter-btn" data-filter="green">🟢 Green</button>
-          <button class="filter-btn persona-filter-btn" data-filter="amber">🟡 Amber</button>
-          <button class="filter-btn persona-filter-btn" data-filter="red">🔴 Red</button>
-          <button class="filter-btn persona-filter-btn" data-filter="si">SI Registered</button>
-          <button class="filter-btn persona-filter-btn" data-filter="non-si">Non-SI</button>
-          <button class="filter-btn persona-filter-btn" data-filter="predue">Pre-Due</button>
-          <button class="filter-btn persona-filter-btn" data-filter="postdue">Post-Due</button>
+          <button class="filter-btn customer-filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn customer-filter-btn" data-filter="green">🟢 Green</button>
+          <button class="filter-btn customer-filter-btn" data-filter="amber">🟡 Amber</button>
+          <button class="filter-btn customer-filter-btn" data-filter="red">🔴 Red</button>
+          <button class="filter-btn customer-filter-btn" data-filter="si">SI Registered</button>
+          <button class="filter-btn customer-filter-btn" data-filter="non-si">Non-SI</button>
+          <button class="filter-btn customer-filter-btn" data-filter="predue">Pre-Due</button>
+          <button class="filter-btn customer-filter-btn" data-filter="postdue">Post-Due</button>
         </div>
 
-        <div id="persona-grid" class="persona-grid"></div>
-      </div><!-- /view-personas -->
+        <div id="customer-grid" class="customer-grid"></div>
+      </div><!-- /view-customers -->
 
       <!-- ============= AI ENGINE ============= -->
       <div class="view" id="view-engine">
@@ -316,7 +316,7 @@
           <div>
             <div class="section-title">AI Channel Recommendation Engine</div>
             <div style="font-size:12px;color:var(--text-3);margin-top:2px">
-              Select a persona to see how the AI engine processes signals and recommends the optimal engagement channel.
+              Select a customer to see how the AI engine processes signals and recommends the optimal engagement channel.
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-3)">
@@ -371,15 +371,15 @@
         </div>
 
         <div class="engine-select-panel">
-          <div class="engine-persona-list">
-            <div class="engine-persona-list-header">Select a Persona</div>
-            <div class="engine-persona-scroll" id="engine-persona-list"></div>
+          <div class="engine-customer-list">
+            <div class="engine-customer-list-header">Select a Customer</div>
+            <div class="engine-customer-scroll" id="engine-customer-list"></div>
           </div>
           <div class="card" id="engine-result" style="overflow-y:auto">
             <div id="engine-result-content">
               <div class="engine-empty">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.3-6.7-2.1 2.1M7.4 16.6l-2.1 2.1m0-14.4 2.1 2.1M16.6 16.6l2.1 2.1"/></svg>
-                <p>Select a persona from the list to run the AI recommendation engine</p>
+                <p>Select a customer from the list to run the AI recommendation engine</p>
               </div>
             </div>
           </div>
@@ -1087,23 +1087,23 @@
   </div><!-- /main-content -->
 </div><!-- /app-shell -->
 
-<!-- ===================== PERSONA MODAL ===================== -->
-<div class="modal-overlay" id="personaModal">
+<!-- ===================== CUSTOMER MODAL ===================== -->
+<div class="modal-overlay" id="customerModal">
   <div class="modal-panel">
     <div class="modal-header" id="modalHeader">
       <!-- Filled by JS -->
       <div class="modal-avatar" id="modalAvatar" style="background:#6366F1">–</div>
-      <div class="modal-persona-info">
-        <div class="modal-persona-name" id="modalName">Loading…</div>
-        <div class="modal-persona-sub" id="modalSub"></div>
-        <div class="modal-persona-tags" id="modalTags"></div>
+      <div class="modal-customer-info">
+        <div class="modal-customer-name" id="modalName">Loading…</div>
+        <div class="modal-customer-sub" id="modalSub"></div>
+        <div class="modal-customer-tags" id="modalTags"></div>
       </div>
       <button class="modal-close" id="modalClose">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div class="modal-body" id="modalBody">
-      <!-- Filled by openPersonaModal() -->
+      <!-- Filled by openCustomerModal() -->
     </div>
   </div>
 </div>
