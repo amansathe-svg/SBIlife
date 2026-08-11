@@ -346,6 +346,38 @@ function buildModalContent(p, rec, bucket) {
       </div>
     </div>`;
 
+  // Interaction summary stats
+  const totalContacts = p.communicationHistory.length;
+  const engagedContacts = p.communicationHistory.filter(h => h.engaged).length;
+  const responseRate = totalContacts > 0 ? Math.round(engagedContacts / totalContacts * 100) : 0;
+  const lastContact = totalContacts > 0
+    ? (p.communicationHistory[0].daysAgo === 0 ? 'Today' : `${p.communicationHistory[0].daysAgo}d ago`)
+    : 'None';
+
+  // Renewal intent derived from signals
+  const si = p.signals;
+  let intentLabel, intentColor;
+  if (si.callOutcome === 'promised')     { intentLabel = 'Verbal payment commitment given'; intentColor = '#059669'; }
+  else if (si.callOutcome === 'refused') { intentLabel = 'Payment explicitly refused'; intentColor = '#DC2626'; }
+  else if (si.whatsappReplied)           { intentLabel = 'Actively responding via WhatsApp'; intentColor = '#059669'; }
+  else if (si.chatbotInteracted)         { intentLabel = 'Self-service payment query initiated'; intentColor = '#059669'; }
+  else if (si.whatsappRead)              { intentLabel = 'Reading messages — no payment action yet'; intentColor = '#D97706'; }
+  else if (si.emailOpened)              { intentLabel = 'Email opened — monitoring closely'; intentColor = '#D97706'; }
+  else if (p.engagementScore >= 80)     { intentLabel = 'High propensity — likely to self-pay on time'; intentColor = '#059669'; }
+  else if (p.engagementScore >= 50)     { intentLabel = 'Moderate signal — gentle nudge required'; intentColor = '#D97706'; }
+  else                                  { intentLabel = 'Low engagement — active escalation needed'; intentColor = '#DC2626'; }
+
+  const recentInteractionsHTML = p.communicationHistory.slice(0, 2).map(h => {
+    const cfg = CHANNEL_CONFIG[h.icon] || {};
+    return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border-light)">
+      <div style="width:22px;height:22px;border-radius:6px;background:${cfg.bgColor||'#F1F5F9'};color:${cfg.color||'#64748B'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="width:12px;height:12px">${CHANNEL_ICONS[h.icon]||''}</span>
+      </div>
+      <div style="flex:1;font-size:11px;color:var(--text-2);line-height:1.3">${h.event}</div>
+      <span style="font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;background:${h.engaged?'#DCFCE7':'#FEE2E2'};color:${h.engaged?'#166534':'#991B1B'};flex-shrink:0">${h.engaged?'Engaged':'No response'}</span>
+    </div>`;
+  }).join('');
+
   return `
     <!-- AI Recommendation Panel (full width) -->
     <div class="ai-rec-panel" style="grid-column:1/-1">
@@ -358,6 +390,7 @@ function buildModalContent(p, rec, bucket) {
           <div>
             <div class="ai-channel-label">${rec.primary || 'Analysing…'}</div>
             <div class="ai-channel-sub">Primary Recommended Channel</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:4px;font-style:italic">${rec.channels[0]?.reason || ''}</div>
           </div>
         </div>
         <div class="ai-score-col" style="min-width:80px">
@@ -382,6 +415,63 @@ function buildModalContent(p, rec, bucket) {
       ${rec.suppressed?.length ? `
         <div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,.4);font-weight:600;letter-spacing:.5px;text-transform:uppercase">Suppressed Channels</div>
         <div class="suppressed-row">${suppressedHTML}</div>` : ''}
+    </div>
+
+    <!-- Previous Interaction Summary + Renewal Intent (full width) -->
+    <div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Previous Interaction Summary</div>
+            <div class="card-sub">${totalContacts} recorded contacts</div>
+          </div>
+        </div>
+        <div class="card-body" style="padding:12px 16px">
+          <div style="display:flex;gap:0;margin-bottom:12px;text-align:center">
+            <div style="flex:1;border-right:1px solid var(--border-light)">
+              <div style="font-size:20px;font-weight:800;color:${engagedContacts === 0 && totalContacts > 0 ? '#DC2626' : '#059669'}">${engagedContacts}/${totalContacts}</div>
+              <div style="font-size:10px;color:var(--text-3)">Engaged / Total</div>
+            </div>
+            <div style="flex:1;border-right:1px solid var(--border-light)">
+              <div style="font-size:20px;font-weight:800;color:${responseRate >= 60 ? '#059669' : responseRate >= 30 ? '#D97706' : '#DC2626'}">${responseRate}%</div>
+              <div style="font-size:10px;color:var(--text-3)">Response Rate</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:16px;font-weight:800;color:var(--text-1)">${lastContact}</div>
+              <div style="font-size:10px;color:var(--text-3)">Last Contact</div>
+            </div>
+          </div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Most Recent Interactions</div>
+          ${recentInteractionsHTML || '<div style="font-size:12px;color:var(--text-3)">No history recorded.</div>'}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Renewal Intent Signal</div>
+        </div>
+        <div class="card-body" style="padding:12px 16px">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;background:${intentColor}18;border:1px solid ${intentColor}44;margin-bottom:12px">
+            <div style="width:10px;height:10px;border-radius:50%;background:${intentColor};flex-shrink:0"></div>
+            <div style="font-size:13px;font-weight:700;color:${intentColor}">${intentLabel}</div>
+          </div>
+          <div style="font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Signal Breakdown</div>
+          <div class="quick-stat" style="padding:5px 0;border-bottom:1px solid var(--border-light)"><span class="qs-label">WhatsApp</span><span class="qs-val" style="font-size:12px">${si.whatsappReplied ? '✅ Replied' : si.whatsappRead ? '👁 Read' : si.whatsappDelivered ? '✔ Delivered' : '✗ Not delivered'}</span></div>
+          <div class="quick-stat" style="padding:5px 0;border-bottom:1px solid var(--border-light)"><span class="qs-label">Last Call</span><span class="qs-val" style="font-size:12px">${si.callOutcome ? si.callOutcome.replace('_',' ') : 'No call made'}</span></div>
+          <div class="quick-stat" style="padding:5px 0;border-bottom:1px solid var(--border-light)"><span class="qs-label">Email</span><span class="qs-val" style="font-size:12px">${si.emailOpened ? '📧 Opened' : si.emailOpened === false ? 'Not opened' : 'N/A'}</span></div>
+          <div class="quick-stat" style="padding:5px 0;border:none"><span class="qs-label">Chatbot</span><span class="qs-val" style="font-size:12px">${si.chatbotInteracted ? '💬 Interacted' : 'No interaction'}</span></div>
+          <div style="margin-top:10px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:10px;color:var(--text-3)">Engagement Score</span>
+              <span style="font-size:10px;font-weight:700;color:${getEngagementColor(p.engagementScore)}">${p.engagementScore}/100</span>
+            </div>
+            <div style="height:6px;background:var(--border-light);border-radius:999px;overflow:hidden">
+              <div style="width:${p.engagementScore}%;height:100%;background:${getEngagementColor(p.engagementScore)};border-radius:999px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Left column: Profile + Signals -->
