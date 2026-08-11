@@ -64,7 +64,7 @@ let signalIndex = 0;
 function renderSignalFeed() {
   const feed = document.getElementById('signal-feed');
   if (!feed) return;
-  feed.innerHTML = SIGNALS.slice(0, 8).map(s => `
+  feed.innerHTML = SIGNALS.slice(0, 6).map(s => `
     <div class="signal-item">
       <div class="signal-icon" style="background:${s.bg};color:${s.color};">
         ${CHANNEL_ICONS[s.icon] || ''}
