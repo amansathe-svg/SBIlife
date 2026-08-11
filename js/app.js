@@ -756,6 +756,19 @@ function initConfiguration() {
   }
 }
 
+// ---- Template Whitelist ----
+function initTemplates() {
+  const tabs = document.querySelectorAll('.tmpl-tab-btn');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tmpl-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tmpl-' + btn.dataset.tab)?.classList.add('active');
+    });
+  });
+}
+
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   initDashboard();
@@ -764,4 +777,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimeline();
   initAnalytics();
   initConfiguration();
+  initTemplates();
 });

@@ -1110,3 +1110,197 @@ body {
 /* Trend arrow */
 .trend-up   { color: #059669; }
 .trend-down { color: var(--sbi-red); }
+
+/* =============================================================
+   Template Whitelist View
+   ============================================================= */
+
+/* Tab bar */
+.tmpl-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.tmpl-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+
+.tmpl-tab-btn:hover { background: var(--card); color: var(--text-2); }
+
+.tmpl-tab-btn.active {
+  background: var(--card);
+  color: var(--sbi-navy);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.tmpl-tab-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* Tab panels */
+.tmpl-panel { display: none; }
+.tmpl-panel.active { display: block; }
+
+/* Template grid */
+.tmpl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* Template card */
+.tmpl-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.tmpl-card:hover {
+  box-shadow: var(--shadow);
+  border-color: #C7D2FE;
+}
+
+.tmpl-card-pending {
+  border-left: 3px solid var(--amber);
+  background: linear-gradient(135deg, #FFFBEB 0%, #fff 40%);
+}
+
+/* Card top row: icon + name/id + status */
+.tmpl-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.tmpl-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.tmpl-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.tmpl-id {
+  font-size: 10px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--text-4);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+
+/* Status chips */
+.tmpl-status {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.tmpl-status.approved {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.tmpl-status.pending {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+/* Use-case & body */
+.tmpl-use-case {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gl-indigo);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tmpl-body {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.55;
+  background: #F8FAFC;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 10px 12px;
+  flex: 1;
+  font-style: italic;
+}
+
+/* Card footer */
+.tmpl-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-light);
+}
+
+.tmpl-meta {
+  font-size: 11px;
+  color: var(--text-4);
+  flex: 1;
+}
+
+.tmpl-btn-preview {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gl-indigo);
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.tmpl-btn-preview:hover { background: #E0E7FF; }
+
+.tmpl-btn-more {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-3);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background var(--transition);
+}
+
+.tmpl-btn-more:hover { background: var(--bg); }
