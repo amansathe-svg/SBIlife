@@ -652,7 +652,7 @@ body {
   color: #fff;
   grid-column: 1 / -1;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .ai-rec-panel::before {
