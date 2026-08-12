@@ -1304,3 +1304,88 @@ body {
 }
 
 .tmpl-btn-more:hover { background: var(--bg); }
+
+/* ================================================
+   INTERNAL CALLING
+   ================================================ */
+.ic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.ic-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.ic-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.ic-card.ic-urgent { border-left: 3px solid #DC2626; }
+
+.ic-card-header { display: flex; align-items: center; gap: 10px; }
+.ic-avatar { width: 40px; height: 40px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+.ic-info { flex: 1; min-width: 0; }
+.ic-name { font-size: 14px; font-weight: 600; color: var(--text-1); }
+.ic-policy { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+
+.ic-urgency { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 99px; letter-spacing: 0.3px; white-space: nowrap; }
+.ic-urgency-critical { background: #FEE2E2; color: #991B1B; }
+.ic-urgency-high { background: #FEF3C7; color: #92400E; }
+.ic-urgency-medium { background: #DBEAFE; color: #1E40AF; }
+
+.ic-issue-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; width: fit-content; }
+.ic-issue-mandate { background: #FEE2E2; color: #991B1B; }
+.ic-issue-name { background: #EDE9FE; color: #6D28D9; }
+.ic-issue-term { background: #D1FAE5; color: #065F46; }
+.ic-issue-nominee { background: #FEF3C7; color: #92400E; }
+
+.ic-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+.ic-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+.ic-stat { font-size: 11px; color: var(--text-3); }
+.ic-premium { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--sbi-navy); }
+
+.ic-section { margin-bottom: 20px; }
+.ic-section-title { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 10px; }
+.ic-issue-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-size: 13px; color: var(--text-1); line-height: 1.65; }
+
+.ic-doc-list { display: flex; flex-direction: column; gap: 6px; }
+.ic-doc-item { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--text-1); padding: 8px 12px; background: var(--bg); border-radius: var(--radius-sm); }
+
+.ic-history { display: flex; flex-direction: column; }
+.ic-history-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.ic-history-item:last-child { border-bottom: none; }
+.ic-h-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ic-h-dot-whatsapp { background: #DCFCE7; color: #16A34A; }
+.ic-h-dot-call { background: #DBEAFE; color: #2563EB; }
+.ic-h-dot-sms { background: #F3F4F6; color: #374151; }
+.ic-h-dot-email { background: #EDE9FE; color: #7C3AED; }
+.ic-h-body { flex: 1; }
+.ic-h-msg { font-size: 13px; color: var(--text-1); }
+.ic-h-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+.ic-h-date { font-size: 11px; color: var(--text-3); }
+.ic-h-status { font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: 600; }
+.ic-st-connected { background: #D1FAE5; color: #065F46; }
+.ic-st-delivered { background: #DBEAFE; color: #1E40AF; }
+.ic-st-read { background: #D1FAE5; color: #065F46; }
+.ic-st-noanswer { background: #FEE2E2; color: #991B1B; }
+.ic-st-opened { background: #EDE9FE; color: #6D28D9; }
+
+.ic-intent-bar { height: 8px; border-radius: 99px; background: var(--border); overflow: clip; }
+
+.nav-badge { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; line-height: 1.4; }
+.nav-badge-critical { background: #FEE2E2; color: #991B1B; }

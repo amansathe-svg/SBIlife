@@ -39,6 +39,12 @@
         <span>Customers (20)</span>
       </button>
 
+      <button class="nav-item" data-view="internal-calling">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.29 6.29l.98-.93a2 2 0 0 1 2.11-.45c.907.34 1.85.574 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Internal Calling</span>
+        <span class="nav-badge nav-badge-critical">1</span>
+      </button>
+
       <button class="nav-item" data-view="engine">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.3-6.7-2.1 2.1M7.4 16.6l-2.1 2.1m0-14.4 2.1 2.1M16.6 16.6l2.1 2.1"/></svg>
         <span>AI Engine</span>
@@ -309,6 +315,99 @@
 
         <div id="customer-grid" class="customer-grid"></div>
       </div><!-- /view-customers -->
+
+      <!-- ============= INTERNAL CALLING ============= -->
+      <div class="view" id="view-internal-calling">
+        <div class="section-header mb16">
+          <div>
+            <div class="section-title">Internal Calling Queue</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:2px">
+              Customers requiring direct agent intervention. Click a card for the full case file.
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span class="badge" style="background:#FEE2E2;color:#991B1B;font-size:12px;padding:5px 12px;font-weight:700">● 1 Critical</span>
+            <span class="badge" style="background:#FEF3C7;color:#92400E;font-size:12px;padding:5px 12px;font-weight:600">4 Active Cases</span>
+          </div>
+        </div>
+
+        <div class="ic-grid">
+
+          <!-- Critical first -->
+          <div class="ic-card ic-urgent" onclick="openICModal(2)">
+            <div class="ic-card-header">
+              <div class="ic-avatar" style="background:#DC2626">RP</div>
+              <div class="ic-info">
+                <div class="ic-name">Rajesh Patel</div>
+                <div class="ic-policy">SBI-LF-74512 · Ahmedabad</div>
+              </div>
+              <span class="ic-urgency ic-urgency-critical">Critical</span>
+            </div>
+            <span class="ic-issue-badge ic-issue-mandate">Auto-Mandate Failure</span>
+            <div class="ic-desc">NACH debit failed 3× — mandate inactive due to bank account change. New mandate registration urgently required before Aug 18 due date.</div>
+            <div class="ic-footer">
+              <span class="ic-stat">Intent: 55%</span>
+              <span class="ic-stat">· 5 attempts</span>
+              <span class="ic-premium">₹48,000</span>
+            </div>
+          </div>
+
+          <div class="ic-card" onclick="openICModal(1)">
+            <div class="ic-card-header">
+              <div class="ic-avatar" style="background:#7C3AED">KS</div>
+              <div class="ic-info">
+                <div class="ic-name">Kavita Sharma</div>
+                <div class="ic-policy">SBI-LF-88234 · Mumbai</div>
+              </div>
+              <span class="ic-urgency ic-urgency-high">High</span>
+            </div>
+            <span class="ic-issue-badge ic-issue-name">Name Change</span>
+            <div class="ic-desc">Name mismatch between policy & Aadhaar blocking auto-renewal. Documents partially submitted — follow-up needed.</div>
+            <div class="ic-footer">
+              <span class="ic-stat">Intent: 72%</span>
+              <span class="ic-stat">· 2 attempts</span>
+              <span class="ic-premium">₹32,500</span>
+            </div>
+          </div>
+
+          <div class="ic-card" onclick="openICModal(3)">
+            <div class="ic-card-header">
+              <div class="ic-avatar" style="background:#059669">AV</div>
+              <div class="ic-info">
+                <div class="ic-name">Anita Verma</div>
+                <div class="ic-policy">SBI-LF-61890 · Delhi</div>
+              </div>
+              <span class="ic-urgency ic-urgency-medium">Medium</span>
+            </div>
+            <span class="ic-issue-badge ic-issue-term">Policy Term Change</span>
+            <div class="ic-desc">Wants to extend term 10→15 yrs &amp; increase sum assured to ₹30L. Fresh underwriting &amp; documents needed.</div>
+            <div class="ic-footer">
+              <span class="ic-stat">Intent: 83%</span>
+              <span class="ic-stat">· 1 connected</span>
+              <span class="ic-premium">₹27,000</span>
+            </div>
+          </div>
+
+          <div class="ic-card" onclick="openICModal(4)">
+            <div class="ic-card-header">
+              <div class="ic-avatar" style="background:#D97706">MI</div>
+              <div class="ic-info">
+                <div class="ic-name">Mohammed Iqbal</div>
+                <div class="ic-policy">SBI-LF-55321 · Hyderabad</div>
+              </div>
+              <span class="ic-urgency ic-urgency-medium">Medium</span>
+            </div>
+            <span class="ic-issue-badge ic-issue-nominee">Nominee Update</span>
+            <div class="ic-desc">Nominee change rejected — missing notary attestation on marriage certificate. Resubmission required.</div>
+            <div class="ic-footer">
+              <span class="ic-stat">Intent: 91%</span>
+              <span class="ic-stat">· 2 attempts</span>
+              <span class="ic-premium">₹36,500</span>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /view-internal-calling -->
 
       <!-- ============= AI ENGINE ============= -->
       <div class="view" id="view-engine">
@@ -1104,6 +1203,26 @@
     </div>
     <div class="modal-body" id="modalBody">
       <!-- Filled by openCustomerModal() -->
+    </div>
+  </div>
+</div>
+
+<!-- ===================== INTERNAL CALLING MODAL ===================== -->
+<div class="modal-overlay" id="icModal">
+  <div class="modal-panel">
+    <div class="modal-header" id="icModalHeader">
+      <div class="modal-avatar" id="icModalAvatar">–</div>
+      <div class="modal-persona-info">
+        <div class="modal-persona-name" id="icModalName">Loading…</div>
+        <div class="modal-persona-sub" id="icModalSub"></div>
+        <div class="modal-persona-tags" id="icModalTags"></div>
+      </div>
+      <button class="modal-close" id="icModalClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="icModalBody">
+      <!-- Filled by openICModal() -->
     </div>
   </div>
 </div>
