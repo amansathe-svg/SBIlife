@@ -46,7 +46,9 @@ const PERSONAS = [
     ],
     engagementScore: 92,
     fieldAgent: "Rajiv Sharma (Bangalore North)",
-    notes: "Consistent payer for 6 years. SI registered and healthy. No human intervention needed."
+    notes: "Consistent payer for 6 years. SI registered and healthy. No human intervention needed.",
+    renewalSentiment: { score: "positive", note: "Consistently reads messages and opens emails. Long-term payer with zero lapses." },
+    promiseToPay: null
   },
   {
     id: 2,
@@ -82,7 +84,9 @@ const PERSONAS = [
     ],
     engagementScore: 78,
     fieldAgent: "Seema Kadam (Pune West)",
-    notes: "Reads WhatsApp but does not click links. Pays via bank transfer every year on time."
+    notes: "Reads WhatsApp but does not click links. Pays via bank transfer every year on time.",
+    renewalSentiment: { score: "neutral", note: "Reads WhatsApp but doesn't click through. Pays on time via direct bank transfer each year." },
+    promiseToPay: null
   },
   {
     id: 3,
@@ -120,7 +124,9 @@ const PERSONAS = [
     ],
     engagementScore: 41,
     fieldAgent: "Farhan Qureshi (Mumbai Central)",
-    notes: "Lapsed once in 2022. Currently unresponsive to all digital channels. Needs human call."
+    notes: "Lapsed once in 2022. Currently unresponsive to all digital channels. Needs human call.",
+    renewalSentiment: { score: "negative", note: "Unresponsive across all digital channels since T-15. Previously lapsed in 2022." },
+    promiseToPay: null
   },
   {
     id: 4,
@@ -158,7 +164,9 @@ const PERSONAS = [
     ],
     engagementScore: 22,
     fieldAgent: "Rina Patel (Ahmedabad South)",
-    notes: "3 prior lapses. Verbal promise made today. Follow-up Call Center call needed in 3 days."
+    notes: "3 prior lapses. Verbal promise made today. Follow-up Call Center call needed in 3 days.",
+    renewalSentiment: { score: "neutral", note: "Answered call and verbally promised payment. History of 3 lapses lowers confidence." },
+    promiseToPay: { date: "2026-08-17", amount: 15000, status: "pending", collectedBy: "Call Center" }
   },
   {
     id: 5,
@@ -195,7 +203,9 @@ const PERSONAS = [
     ],
     engagementScore: 74,
     fieldAgent: "Krishna Mohan (Hyderabad West)",
-    notes: "SI registered. Amber due to account balance dip in Q3 last year. Currently engaged via WhatsApp."
+    notes: "SI registered. Amber due to account balance dip in Q3 last year. Currently engaged via WhatsApp.",
+    renewalSentiment: { score: "positive", note: "Replied to WhatsApp and engaged with voice reminder. Actively communicating pre-due." },
+    promiseToPay: null
   },
   {
     id: 6,
@@ -231,7 +241,9 @@ const PERSONAS = [
     ],
     engagementScore: 98,
     fieldAgent: "Suresh Kumar (Chennai Central)",
-    notes: "High-value policy. Green-High. Never lapsed. Minimum touchpoints needed."
+    notes: "High-value policy. Green-High. Never lapsed. Minimum touchpoints needed.",
+    renewalSentiment: { score: "positive", note: "Reads all communications promptly. High-value customer with perfect payment record." },
+    promiseToPay: null
   },
   {
     id: 7,
@@ -268,7 +280,9 @@ const PERSONAS = [
     ],
     engagementScore: 18,
     fieldAgent: "Mahesh Meena (Jaipur Rural)",
-    notes: "High lapse risk. No WhatsApp or email. Only reachable via call. Field agent proximity needed."
+    notes: "High lapse risk. No WhatsApp or email. Only reachable via call. Field agent proximity needed.",
+    renewalSentiment: { score: "negative", note: "Only reachable by phone. Promised payment but 4 prior lapses lower credibility." },
+    promiseToPay: { date: "2026-08-21", amount: 8500, status: "pending", collectedBy: "Call Center" }
   },
   {
     id: 8,
@@ -304,7 +318,9 @@ const PERSONAS = [
     ],
     engagementScore: 58,
     fieldAgent: "Jose Mathew (Kochi South)",
-    notes: "Green-Low due to 1 past lapse. Now pays regularly via husband's account. No CC needed pre-due."
+    notes: "Green-Low due to 1 past lapse. Now pays regularly via husband's account. No CC needed pre-due.",
+    renewalSentiment: { score: "neutral", note: "Reads WhatsApp but doesn't interact further. Pays reliably via family account." },
+    promiseToPay: null
   },
   {
     id: 9,
@@ -341,7 +357,9 @@ const PERSONAS = [
     ],
     engagementScore: 63,
     fieldAgent: "Carlos Fernandes (Goa)",
-    notes: "Chatbot interaction today suggests payment intent. Hold Call Center — customer may self-serve."
+    notes: "Chatbot interaction today suggests payment intent. Hold Call Center — customer may self-serve.",
+    renewalSentiment: { score: "positive", note: "Opened payment link and queried options via chatbot. Strong intent to self-serve today." },
+    promiseToPay: null
   },
   {
     id: 10,
@@ -377,7 +395,9 @@ const PERSONAS = [
     ],
     engagementScore: 96,
     fieldAgent: "Deepika Rao (Bangalore South)",
-    notes: "Highly engaged. Proactively checks fund performance. Zero-touch needed for renewal."
+    notes: "Highly engaged. Proactively checks fund performance. Zero-touch needed for renewal.",
+    renewalSentiment: { score: "positive", note: "Replied on WhatsApp and used chatbot proactively. Highly committed to renewal." },
+    promiseToPay: null
   },
   {
     id: 11,
@@ -414,7 +434,9 @@ const PERSONAS = [
     ],
     engagementScore: 12,
     fieldAgent: "Rajesh Verma (Delhi East)",
-    notes: "SI failed due to insufficient balance. T+2 full escalation. Unresponsive. Field agent contact required."
+    notes: "SI failed due to insufficient balance. T+2 full escalation. Unresponsive. Field agent contact required.",
+    renewalSentiment: { score: "negative", note: "SI failed on due date. Unresponsive to all channels post-due. High lapse risk." },
+    promiseToPay: null
   },
   {
     id: 12,
@@ -451,7 +473,9 @@ const PERSONAS = [
     ],
     engagementScore: 61,
     fieldAgent: "Anitha Pillai (TVM Central)",
-    notes: "Promised payment for next week. Suppress Call Center for 5 days — honour the commitment window."
+    notes: "Promised payment for next week. Suppress Call Center for 5 days — honour the commitment window.",
+    renewalSentiment: { score: "positive", note: "Answered call and confirmed a specific payment date. Reads WhatsApp consistently." },
+    promiseToPay: { date: "2026-08-21", amount: 16000, status: "pending", collectedBy: "Call Center" }
   },
   {
     id: 13,
@@ -488,7 +512,9 @@ const PERSONAS = [
     ],
     engagementScore: 47,
     fieldAgent: "Vikas Sharma (Jaipur East)",
-    notes: "Green-Low with 2 lapses. T-1 and unresponsive. Escalate immediately — high risk today."
+    notes: "Green-Low with 2 lapses. T-1 and unresponsive. Escalate immediately — high risk today.",
+    renewalSentiment: { score: "neutral", note: "Reads WhatsApp reminders but not responding to calls. Elevated risk at T-1." },
+    promiseToPay: null
   },
   {
     id: 14,
@@ -525,7 +551,9 @@ const PERSONAS = [
     ],
     engagementScore: 8,
     fieldAgent: "Selvaraj (Chennai West)",
-    notes: "5 lapses. T+20. Verbally refused payment. Needs Tamil-speaking specialist agent. Check for revival scheme eligibility."
+    notes: "5 lapses. T+20. Verbally refused payment. Needs Tamil-speaking specialist agent. Check for revival scheme eligibility.",
+    renewalSentiment: { score: "negative", note: "Verbally refused payment on latest call, citing financial difficulty. 5 prior lapses." },
+    promiseToPay: null
   },
   {
     id: 15,
@@ -561,7 +589,9 @@ const PERSONAS = [
     ],
     engagementScore: 38,
     fieldAgent: "Santosh Mane (Pune Rural)",
-    notes: "SI failed — mandate expired. T+1: email-only per SOP. Will escalate to full channels tomorrow (T+2)."
+    notes: "SI failed — mandate expired. T+1: email-only per SOP. Will escalate to full channels tomorrow (T+2).",
+    renewalSentiment: { score: "neutral", note: "Reads messages but no engagement since SI mandate expired. Awaiting escalation response." },
+    promiseToPay: null
   },
   {
     id: 16,
@@ -596,7 +626,9 @@ const PERSONAS = [
     ],
     engagementScore: 99,
     fieldAgent: "Prateek Jain (Mumbai South)",
-    notes: "VIP customer. High premium. Green-High SI. T-60 warm-up phase only. Zero intervention needed."
+    notes: "VIP customer. High premium. Green-High SI. T-60 warm-up phase only. Zero intervention needed.",
+    renewalSentiment: { score: "positive", note: "Opens all communications promptly. VIP customer with zero lapses and healthy SI." },
+    promiseToPay: null
   },
   {
     id: 17,
@@ -633,7 +665,9 @@ const PERSONAS = [
     ],
     engagementScore: 5,
     fieldAgent: "Dharam Pal (Delhi West)",
-    notes: "End of grace window. 5 prior lapses. No digital access. Only SMS viable. Field agent escalation critical."
+    notes: "End of grace window. 5 prior lapses. No digital access. Only SMS viable. Field agent escalation critical.",
+    renewalSentiment: { score: "negative", note: "Completely unreachable across all channels. End of grace period with 5 prior lapses." },
+    promiseToPay: null
   },
   {
     id: 18,
@@ -670,7 +704,9 @@ const PERSONAS = [
     ],
     engagementScore: 68,
     fieldAgent: "Meenu Srivastava (Lucknow Central)",
-    notes: "Committed to pay Monday. Don't bombard — respect the commitment window. Follow up on T (due date) only."
+    notes: "Committed to pay Monday. Don't bombard — respect the commitment window. Follow up on T (due date) only.",
+    renewalSentiment: { score: "positive", note: "Answered call, confirmed Monday payment date, and responded to voice bot. Committed." },
+    promiseToPay: { date: "2026-08-18", amount: 20000, status: "pending", collectedBy: "Call Center" }
   },
   {
     id: 19,
@@ -706,7 +742,9 @@ const PERSONAS = [
     ],
     engagementScore: 81,
     fieldAgent: "Sunil Tiwari (Bhopal North)",
-    notes: "Green-Mid SI. Legal T-15 reminder sent. Low digital — SMS fallback auto-triggered. No CC needed."
+    notes: "Green-Mid SI. Legal T-15 reminder sent. Low digital — SMS fallback auto-triggered. No CC needed.",
+    renewalSentiment: { score: "neutral", note: "Latest reminder unread but SI is healthy and track record is clean. Likely to renew." },
+    promiseToPay: null
   },
   {
     id: 20,
@@ -743,6 +781,8 @@ const PERSONAS = [
     ],
     engagementScore: 71,
     fieldAgent: "Anwar Khan (Hyderabad East)",
-    notes: "T+5, highly engaged across all channels. Payment likely in transit. Monitor chatbot payment link for confirmation."
+    notes: "T+5, highly engaged across all channels. Payment likely in transit. Monitor chatbot payment link for confirmation.",
+    renewalSentiment: { score: "positive", note: "Highly active — replied on WhatsApp, used chatbot, answered call. Payment reportedly in transit." },
+    promiseToPay: { date: "2026-08-15", amount: 50000, status: "pending", collectedBy: "Call Center" }
   }
 ];

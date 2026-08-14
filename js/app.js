@@ -134,6 +134,19 @@ function getEngagementColor(score) {
   return '#DC2626';
 }
 
+function getSentimentStyle(score) {
+  if (score === 'positive') return { color: '#16A34A', bg: '#DCFCE7', label: 'Positive' };
+  if (score === 'negative') return { color: '#DC2626', bg: '#FEE2E2', label: 'Negative' };
+  return { color: '#D97706', bg: '#FEF3C7', label: 'Neutral' };
+}
+
+function formatPTPDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+}
+
+function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
 function renderPersonaCard(p) {
   const rec = getChannelRecommendation(p);
   const bucket = getBucketInfo(p.propensityBucket);
@@ -143,6 +156,7 @@ function renderPersonaCard(p) {
   const primaryColor = chanConf?.color || '#6366F1';
   const primaryBg = chanConf?.bgColor || '#EDE9FE';
   const channelIconKey = chanConf?.icon || 'wa';
+  const sentStyle = getSentimentStyle(p.renewalSentiment?.score);
 
   return `
     <div class="persona-card" data-id="${p.id}" onclick="openPersonaModal(${p.id})">
@@ -192,6 +206,22 @@ function renderPersonaCard(p) {
           </span>
           <span class="rec-urgency urgency-${rec.urgencyLevel}">${rec.urgencyLevel}</span>
         </div>
+      </div>
+
+      <div class="persona-extra">
+        <div class="sentiment-row">
+          <span class="sentiment-dot" style="background:${sentStyle.color}"></span>
+          <span class="sentiment-key">Renewal Sentiment</span>
+          <span class="sentiment-val" style="color:${sentStyle.color}">${sentStyle.label}</span>
+        </div>
+        ${p.promiseToPay ? `
+        <div class="ptp-row">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11" style="color:#6366F1;flex-shrink:0"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+          <span class="ptp-key">PTP</span>
+          <span class="ptp-date">${formatPTPDate(p.promiseToPay.date)} · ₹${(p.promiseToPay.amount/1000).toFixed(0)}K</span>
+          <span class="ptp-status-badge ptp-${p.promiseToPay.status}">${capitalize(p.promiseToPay.status)}</span>
+        </div>
+        ` : ''}
       </div>
     </div>`;
 }
@@ -507,6 +537,28 @@ function buildModalContent(p, rec, bucket) {
           <div class="profile-field-label" style="margin-bottom:8px">7-Day Interaction Signals</div>
           ${sigHTML}
           ${p.notes ? `<div class="divider"></div><div class="profile-field-label">Analyst Notes</div><div style="font-size:12px;color:var(--text-2);margin-top:4px;line-height:1.5">${p.notes}</div>` : ''}
+          <div class="divider"></div>
+          <div class="modal-sentiment-ptp">
+            <div>
+              <div class="profile-field-label">Renewal Sentiment</div>
+              <div class="modal-sentiment-row">
+                <span class="sentiment-dot" style="background:${getSentimentStyle(p.renewalSentiment?.score).color}"></span>
+                <span style="font-size:13px;font-weight:600;color:${getSentimentStyle(p.renewalSentiment?.score).color}">${getSentimentStyle(p.renewalSentiment?.score).label}</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:5px;line-height:1.5">${p.renewalSentiment?.note || '—'}</div>
+            </div>
+            <div>
+              <div class="profile-field-label">Promise to Pay</div>
+              ${p.promiseToPay ? `
+              <div class="modal-ptp-row">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" style="color:#6366F1;flex-shrink:0"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+                <span style="font-size:13px;font-weight:600;color:var(--text-1)">${formatPTPDate(p.promiseToPay.date)}</span>
+                <span class="ptp-status-badge ptp-${p.promiseToPay.status}">${capitalize(p.promiseToPay.status)}</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:5px">₹${p.promiseToPay.amount.toLocaleString()} · Collected by ${p.promiseToPay.collectedBy}</div>
+              ` : `<div style="font-size:12px;color:var(--text-3);margin-top:6px">Not collected</div>`}
+            </div>
+          </div>
         </div>
       </div>
     </div>

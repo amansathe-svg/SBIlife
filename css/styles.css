@@ -702,6 +702,91 @@ body {
 .rec-label { font-size: 11px; font-weight: 600; color: var(--text-1); flex: 1; }
 .rec-urgency { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 2px 6px; border-radius: 4px; }
 
+/* Sentiment + PTP section on persona card */
+.persona-extra {
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sentiment-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sentiment-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sentiment-key {
+  font-size: 10px;
+  color: var(--text-3);
+  flex: 1;
+}
+
+.sentiment-val {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ptp-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ptp-key {
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.ptp-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-1);
+  flex: 1;
+}
+
+.ptp-status-badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.ptp-pending  { background: #FEF3C7; color: #92400E; }
+.ptp-fulfilled{ background: #DCFCE7; color: #14532D; }
+.ptp-broken   { background: #FEE2E2; color: #991B1B; }
+
+/* Modal sentiment + PTP layout */
+.modal-sentiment-ptp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.modal-sentiment-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
+
+.modal-ptp-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
+
 /* ===================== PERSONA MODAL ===================== */
 .modal-overlay {
   position: fixed;
