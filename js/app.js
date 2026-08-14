@@ -102,7 +102,7 @@ function startSignalFeed() {
 }
 
 // ---- Customers View ----
-let activeFilter = 'all';
+let activeFilters = { colors: [], timing: [], si: [], regions: [], premiumMin: null };
 let searchQuery = '';
 
 function getBucketClass(b) {
@@ -134,6 +134,19 @@ function getEngagementColor(score) {
   return '#DC2626';
 }
 
+function getSentimentStyle(score) {
+  if (score === 'positive') return { color: '#16A34A', bg: '#DCFCE7', label: 'Positive' };
+  if (score === 'negative') return { color: '#DC2626', bg: '#FEE2E2', label: 'Negative' };
+  return { color: '#D97706', bg: '#FEF3C7', label: 'Neutral' };
+}
+
+function formatPTPDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+}
+
+function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
 function renderCustomerCard(p) {
   const rec = getChannelRecommendation(p);
   const bucket = getBucketInfo(p.propensityBucket);
@@ -143,6 +156,7 @@ function renderCustomerCard(p) {
   const primaryColor = chanConf?.color || '#6366F1';
   const primaryBg = chanConf?.bgColor || '#EDE9FE';
   const channelIconKey = chanConf?.icon || 'wa';
+  const sentStyle = getSentimentStyle(p.renewalSentiment?.score);
 
   return `
     <div class="customer-card" data-id="${p.id}" onclick="openCustomerModal(${p.id})">
@@ -193,28 +207,119 @@ function renderCustomerCard(p) {
           <span class="rec-urgency urgency-${rec.urgencyLevel}">${rec.urgencyLevel}</span>
         </div>
       </div>
+
+      <div class="persona-extra">
+        <div class="sentiment-row">
+          <span class="sentiment-dot" style="background:${sentStyle.color}"></span>
+          <span class="sentiment-key">Renewal Sentiment</span>
+          <span class="sentiment-val" style="color:${sentStyle.color}">${sentStyle.label}</span>
+        </div>
+        ${p.promiseToPay ? `
+        <div class="ptp-row">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11" style="color:#6366F1;flex-shrink:0"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+          <span class="ptp-key">PTP</span>
+          <span class="ptp-date">${formatPTPDate(p.promiseToPay.date)} · ₹${(p.promiseToPay.amount/1000).toFixed(0)}K</span>
+          <span class="ptp-status-badge ptp-${p.promiseToPay.status}">${capitalize(p.promiseToPay.status)}</span>
+        </div>
+        ` : ''}
+      </div>
     </div>`;
 }
 
 function initCustomers() {
   const grid = document.getElementById('customer-grid');
   const searchEl = document.getElementById('customer-search');
-  const filters = document.querySelectorAll('.customer-filter-btn');
+  const toggleBtn = document.getElementById('filter-toggle-btn');
+  const panel = document.getElementById('filter-panel');
+  const chips = document.querySelectorAll('.filter-chip');
+  const premiumInput = document.getElementById('filter-premium-input');
+  const clearBtn = document.getElementById('filter-clear-btn');
+
+  toggleBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    panel.classList.toggle('open');
+  });
+
+  document.addEventListener('click', e => {
+    if (panel && !panel.contains(e.target) && e.target !== toggleBtn && !toggleBtn?.contains(e.target)) {
+      panel.classList.remove('open');
+    }
+  });
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+      const arr = activeFilters[group];
+      const idx = arr.indexOf(value);
+      if (idx === -1) arr.push(value);
+      else arr.splice(idx, 1);
+      chip.classList.toggle('active', arr.includes(value));
+      render();
+    });
+  });
+
+  premiumInput?.addEventListener('input', e => {
+    const val = parseFloat(e.target.value);
+    activeFilters.premiumMin = isNaN(val) ? null : val;
+    render();
+  });
+
+  clearBtn?.addEventListener('click', () => {
+    activeFilters = { colors: [], timing: [], si: [], regions: [], premiumMin: null };
+    chips.forEach(c => c.classList.remove('active'));
+    if (premiumInput) premiumInput.value = '';
+    render();
+  });
+
+  function updateBadge() {
+    const badge = document.getElementById('filter-badge');
+    const count = activeFilters.colors.length + activeFilters.timing.length +
+                  activeFilters.si.length + activeFilters.regions.length +
+                  (activeFilters.premiumMin !== null ? 1 : 0);
+    if (badge) {
+      badge.textContent = count || '';
+      badge.style.display = count ? 'flex' : 'none';
+    }
+    toggleBtn?.classList.toggle('has-filters', count > 0);
+  }
 
   function render() {
     let list = CUSTOMERS;
-    if (activeFilter !== 'all') {
-      list = list.filter(p => {
-        if (activeFilter === 'green')   return p.propensityBucket.startsWith('green');
-        if (activeFilter === 'amber')   return p.propensityBucket === 'amber';
-        if (activeFilter === 'red')     return p.propensityBucket === 'red';
-        if (activeFilter === 'si')      return p.siStatus === 'registered';
-        if (activeFilter === 'non-si')  return p.siStatus === 'not-registered';
-        if (activeFilter === 'predue')  return p.journeyDay < 0;
-        if (activeFilter === 'postdue') return p.journeyDay >= 0;
-        return true;
-      });
+
+    if (activeFilters.colors.length) {
+      list = list.filter(p => activeFilters.colors.some(c => {
+        if (c === 'green') return p.propensityBucket.startsWith('green');
+        if (c === 'amber') return p.propensityBucket === 'amber';
+        if (c === 'red')   return p.propensityBucket === 'red';
+        return false;
+      }));
     }
+
+    if (activeFilters.timing.length) {
+      list = list.filter(p => activeFilters.timing.some(t => {
+        if (t === 'predue')  return p.journeyDay < 0;
+        if (t === 'postdue') return p.journeyDay >= 0;
+        return false;
+      }));
+    }
+
+    if (activeFilters.si.length) {
+      list = list.filter(p => activeFilters.si.some(s => {
+        if (s === 'si')     return p.siStatus === 'registered';
+        if (s === 'non-si') return p.siStatus === 'not-registered';
+        return false;
+      }));
+    }
+
+    if (activeFilters.regions.length) {
+      list = list.filter(p => activeFilters.regions.includes(p.state));
+    }
+
+    if (activeFilters.premiumMin !== null) {
+      list = list.filter(p => p.premiumAmount > activeFilters.premiumMin);
+    }
+
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       list = list.filter(p =>
@@ -224,20 +329,13 @@ function initCustomers() {
         p.policyNumber.toLowerCase().includes(q)
       );
     }
+
     grid.innerHTML = list.length
       ? list.map(renderCustomerCard).join('')
       : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">No customers match your filters.</div>';
     document.getElementById('customer-count').textContent = list.length + ' customers';
+    updateBadge();
   }
-
-  filters.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filters.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeFilter = btn.dataset.filter;
-      render();
-    });
-  });
 
   searchEl?.addEventListener('input', e => { searchQuery = e.target.value; render(); });
   render();
@@ -529,6 +627,28 @@ function buildModalContent(p, rec, bucket) {
           <div class="profile-field-label" style="margin-bottom:8px">7-Day Interaction Signals</div>
           ${sigHTML}
           ${p.notes ? `<div class="divider"></div><div class="profile-field-label">Analyst Notes</div><div style="font-size:12px;color:var(--text-2);margin-top:4px;line-height:1.5">${p.notes}</div>` : ''}
+          <div class="divider"></div>
+          <div class="modal-sentiment-ptp">
+            <div>
+              <div class="profile-field-label">Renewal Sentiment</div>
+              <div class="modal-sentiment-row">
+                <span class="sentiment-dot" style="background:${getSentimentStyle(p.renewalSentiment?.score).color}"></span>
+                <span style="font-size:13px;font-weight:600;color:${getSentimentStyle(p.renewalSentiment?.score).color}">${getSentimentStyle(p.renewalSentiment?.score).label}</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:5px;line-height:1.5">${p.renewalSentiment?.note || '—'}</div>
+            </div>
+            <div>
+              <div class="profile-field-label">Promise to Pay</div>
+              ${p.promiseToPay ? `
+              <div class="modal-ptp-row">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" style="color:#6366F1;flex-shrink:0"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+                <span style="font-size:13px;font-weight:600;color:var(--text-1)">${formatPTPDate(p.promiseToPay.date)}</span>
+                <span class="ptp-status-badge ptp-${p.promiseToPay.status}">${capitalize(p.promiseToPay.status)}</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:5px">₹${p.promiseToPay.amount.toLocaleString()} · Collected by ${p.promiseToPay.collectedBy}</div>
+              ` : `<div style="font-size:12px;color:var(--text-3);margin-top:6px">Not collected</div>`}
+            </div>
+          </div>
         </div>
       </div>
     </div>

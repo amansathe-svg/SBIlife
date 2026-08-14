@@ -303,14 +303,63 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input id="customer-search" type="text" placeholder="Search by name, city, occupation…">
           </div>
-          <button class="filter-btn customer-filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn customer-filter-btn" data-filter="green">🟢 Green</button>
-          <button class="filter-btn customer-filter-btn" data-filter="amber">🟡 Amber</button>
-          <button class="filter-btn customer-filter-btn" data-filter="red">🔴 Red</button>
-          <button class="filter-btn customer-filter-btn" data-filter="si">SI Registered</button>
-          <button class="filter-btn customer-filter-btn" data-filter="non-si">Non-SI</button>
-          <button class="filter-btn customer-filter-btn" data-filter="predue">Pre-Due</button>
-          <button class="filter-btn customer-filter-btn" data-filter="postdue">Post-Due</button>
+          <button class="filter-icon-btn" id="filter-toggle-btn" title="Filter customers">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <span class="filter-badge" id="filter-badge" style="display:none"></span>
+          </button>
+        </div>
+
+        <div class="filter-panel" id="filter-panel">
+          <div class="filter-panel-body">
+            <div class="filter-section">
+              <div class="filter-section-title">Propensity</div>
+              <div class="filter-chips">
+                <button class="filter-chip" data-group="colors" data-value="green"><span class="chip-dot" style="background:#16A34A"></span>Green</button>
+                <button class="filter-chip" data-group="colors" data-value="amber"><span class="chip-dot" style="background:#D97706"></span>Amber</button>
+                <button class="filter-chip" data-group="colors" data-value="red"><span class="chip-dot" style="background:#DC2626"></span>Red</button>
+              </div>
+            </div>
+            <div class="filter-section">
+              <div class="filter-section-title">Due Status</div>
+              <div class="filter-chips">
+                <button class="filter-chip" data-group="timing" data-value="predue">Pre-Due</button>
+                <button class="filter-chip" data-group="timing" data-value="postdue">Post-Due</button>
+              </div>
+            </div>
+            <div class="filter-section">
+              <div class="filter-section-title">SI Status</div>
+              <div class="filter-chips">
+                <button class="filter-chip" data-group="si" data-value="si">SI</button>
+                <button class="filter-chip" data-group="si" data-value="non-si">Non-SI</button>
+              </div>
+            </div>
+            <div class="filter-section filter-section-regions">
+              <div class="filter-section-title">Region</div>
+              <div class="filter-chips">
+                <button class="filter-chip" data-group="regions" data-value="Karnataka">Karnataka</button>
+                <button class="filter-chip" data-group="regions" data-value="Maharashtra">Maharashtra</button>
+                <button class="filter-chip" data-group="regions" data-value="Gujarat">Gujarat</button>
+                <button class="filter-chip" data-group="regions" data-value="Telangana">Telangana</button>
+                <button class="filter-chip" data-group="regions" data-value="Tamil Nadu">Tamil Nadu</button>
+                <button class="filter-chip" data-group="regions" data-value="Rajasthan">Rajasthan</button>
+                <button class="filter-chip" data-group="regions" data-value="Kerala">Kerala</button>
+                <button class="filter-chip" data-group="regions" data-value="Goa">Goa</button>
+                <button class="filter-chip" data-group="regions" data-value="Delhi NCR">Delhi NCR</button>
+                <button class="filter-chip" data-group="regions" data-value="Uttar Pradesh">Uttar Pradesh</button>
+                <button class="filter-chip" data-group="regions" data-value="Madhya Pradesh">Madhya Pradesh</button>
+              </div>
+            </div>
+            <div class="filter-section">
+              <div class="filter-section-title">Premium Amount</div>
+              <div class="filter-premium-row">
+                <span class="premium-gt-label">Greater than ₹</span>
+                <input type="number" id="filter-premium-input" class="filter-premium-input" placeholder="e.g. 50000" min="0" step="1000">
+              </div>
+            </div>
+          </div>
+          <div class="filter-panel-footer">
+            <button class="filter-clear-btn" id="filter-clear-btn">Clear All</button>
+          </div>
         </div>
 
         <div id="customer-grid" class="customer-grid"></div>

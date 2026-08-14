@@ -465,6 +465,145 @@ body {
 .filter-btn:hover { border-color: var(--gl-purple); color: var(--gl-purple); }
 .filter-btn.active { background: var(--gl-purple); color: #fff; border-color: var(--gl-purple); }
 
+/* Filter Icon Button */
+.filter-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-2);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+.filter-icon-btn:hover { border-color: var(--gl-purple); color: var(--gl-purple); }
+.filter-icon-btn.has-filters { background: #EDE9FE; color: var(--gl-purple); border-color: var(--gl-purple); }
+
+.filter-badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  min-width: 16px; height: 16px;
+  padding: 0 4px;
+  background: var(--gl-purple);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Filter Panel */
+.filter-panel {
+  display: none;
+  margin-bottom: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.filter-panel.open { display: block; }
+
+.filter-panel-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px 20px;
+  align-items: flex-start;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.filter-section-regions { flex: 1; min-width: 260px; }
+
+.filter-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.filter-chip:hover { border-color: var(--gl-purple); color: var(--gl-purple); }
+.filter-chip.active { background: var(--gl-purple); color: #fff; border-color: var(--gl-purple); }
+.filter-chip.active .chip-dot { outline: 2px solid rgba(255,255,255,0.5); outline-offset: 1px; }
+
+.chip-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.filter-premium-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.premium-gt-label { font-size: 12px; color: var(--text-3); white-space: nowrap; }
+.filter-premium-input {
+  width: 120px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 12px;
+  color: var(--text-1);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.filter-premium-input:focus { border-color: var(--gl-purple); }
+.filter-premium-input::placeholder { color: var(--text-4); }
+
+.filter-panel-footer {
+  padding: 10px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--bg);
+}
+.filter-clear-btn {
+  padding: 5px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-size: 12px;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-clear-btn:hover { border-color: #DC2626; color: #DC2626; }
+
 .customer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -562,6 +701,91 @@ body {
 
 .rec-label { font-size: 11px; font-weight: 600; color: var(--text-1); flex: 1; }
 .rec-urgency { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 2px 6px; border-radius: 4px; }
+
+/* Sentiment + PTP section on customer card */
+.persona-extra {
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sentiment-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sentiment-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sentiment-key {
+  font-size: 10px;
+  color: var(--text-3);
+  flex: 1;
+}
+
+.sentiment-val {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ptp-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ptp-key {
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.ptp-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-1);
+  flex: 1;
+}
+
+.ptp-status-badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.ptp-pending  { background: #FEF3C7; color: #92400E; }
+.ptp-fulfilled{ background: #DCFCE7; color: #14532D; }
+.ptp-broken   { background: #FEE2E2; color: #991B1B; }
+
+/* Modal sentiment + PTP layout */
+.modal-sentiment-ptp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.modal-sentiment-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
+
+.modal-ptp-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
 
 /* ===================== CUSTOMER MODAL ===================== */
 .modal-overlay {
