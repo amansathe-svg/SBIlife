@@ -102,7 +102,7 @@ function startSignalFeed() {
 }
 
 // ---- Personas View ----
-let activeFilter = 'all';
+let activeFilters = { colors: [], timing: [], si: [], regions: [], premiumMin: null };
 let searchQuery = '';
 
 function getBucketClass(b) {
@@ -199,22 +199,97 @@ function renderPersonaCard(p) {
 function initPersonas() {
   const grid = document.getElementById('persona-grid');
   const searchEl = document.getElementById('persona-search');
-  const filters = document.querySelectorAll('.persona-filter-btn');
+  const toggleBtn = document.getElementById('filter-toggle-btn');
+  const panel = document.getElementById('filter-panel');
+  const chips = document.querySelectorAll('.filter-chip');
+  const premiumInput = document.getElementById('filter-premium-input');
+  const clearBtn = document.getElementById('filter-clear-btn');
+
+  toggleBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    panel.classList.toggle('open');
+  });
+
+  document.addEventListener('click', e => {
+    if (panel && !panel.contains(e.target) && e.target !== toggleBtn && !toggleBtn?.contains(e.target)) {
+      panel.classList.remove('open');
+    }
+  });
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+      const arr = activeFilters[group];
+      const idx = arr.indexOf(value);
+      if (idx === -1) arr.push(value);
+      else arr.splice(idx, 1);
+      chip.classList.toggle('active', arr.includes(value));
+      render();
+    });
+  });
+
+  premiumInput?.addEventListener('input', e => {
+    const val = parseFloat(e.target.value);
+    activeFilters.premiumMin = isNaN(val) ? null : val;
+    render();
+  });
+
+  clearBtn?.addEventListener('click', () => {
+    activeFilters = { colors: [], timing: [], si: [], regions: [], premiumMin: null };
+    chips.forEach(c => c.classList.remove('active'));
+    if (premiumInput) premiumInput.value = '';
+    render();
+  });
+
+  function updateBadge() {
+    const badge = document.getElementById('filter-badge');
+    const count = activeFilters.colors.length + activeFilters.timing.length +
+                  activeFilters.si.length + activeFilters.regions.length +
+                  (activeFilters.premiumMin !== null ? 1 : 0);
+    if (badge) {
+      badge.textContent = count || '';
+      badge.style.display = count ? 'flex' : 'none';
+    }
+    toggleBtn?.classList.toggle('has-filters', count > 0);
+  }
 
   function render() {
     let list = PERSONAS;
-    if (activeFilter !== 'all') {
-      list = list.filter(p => {
-        if (activeFilter === 'green')   return p.propensityBucket.startsWith('green');
-        if (activeFilter === 'amber')   return p.propensityBucket === 'amber';
-        if (activeFilter === 'red')     return p.propensityBucket === 'red';
-        if (activeFilter === 'si')      return p.siStatus === 'registered';
-        if (activeFilter === 'non-si')  return p.siStatus === 'not-registered';
-        if (activeFilter === 'predue')  return p.journeyDay < 0;
-        if (activeFilter === 'postdue') return p.journeyDay >= 0;
-        return true;
-      });
+
+    if (activeFilters.colors.length) {
+      list = list.filter(p => activeFilters.colors.some(c => {
+        if (c === 'green') return p.propensityBucket.startsWith('green');
+        if (c === 'amber') return p.propensityBucket === 'amber';
+        if (c === 'red')   return p.propensityBucket === 'red';
+        return false;
+      }));
     }
+
+    if (activeFilters.timing.length) {
+      list = list.filter(p => activeFilters.timing.some(t => {
+        if (t === 'predue')  return p.journeyDay < 0;
+        if (t === 'postdue') return p.journeyDay >= 0;
+        return false;
+      }));
+    }
+
+    if (activeFilters.si.length) {
+      list = list.filter(p => activeFilters.si.some(s => {
+        if (s === 'si')     return p.siStatus === 'registered';
+        if (s === 'non-si') return p.siStatus === 'not-registered';
+        return false;
+      }));
+    }
+
+    if (activeFilters.regions.length) {
+      list = list.filter(p => activeFilters.regions.includes(p.state));
+    }
+
+    if (activeFilters.premiumMin !== null) {
+      list = list.filter(p => p.premiumAmount > activeFilters.premiumMin);
+    }
+
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       list = list.filter(p =>
@@ -224,20 +299,13 @@ function initPersonas() {
         p.policyNumber.toLowerCase().includes(q)
       );
     }
+
     grid.innerHTML = list.length
       ? list.map(renderPersonaCard).join('')
       : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">No personas match your filters.</div>';
     document.getElementById('persona-count').textContent = list.length + ' personas';
+    updateBadge();
   }
-
-  filters.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filters.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeFilter = btn.dataset.filter;
-      render();
-    });
-  });
 
   searchEl?.addEventListener('input', e => { searchQuery = e.target.value; render(); });
   render();
