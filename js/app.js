@@ -157,6 +157,8 @@ function renderCustomerCard(p) {
   const primaryBg = chanConf?.bgColor || '#EDE9FE';
   const channelIconKey = chanConf?.icon || 'wa';
   const sentStyle = getSentimentStyle(p.renewalSentiment?.score);
+  const isMultiPolicy = p.policies && p.policies.length > 1;
+  const totalPremium = isMultiPolicy ? p.policies.reduce((s, pol) => s + pol.premiumAmount, 0) : p.premiumAmount;
 
   return `
     <div class="customer-card" data-id="${p.id}" onclick="openCustomerModal(${p.id})">
@@ -165,7 +167,7 @@ function renderCustomerCard(p) {
         <div class="customer-info">
           <div class="customer-name">${p.name}</div>
           <div class="customer-sub">${p.occupation} · ${p.city}</div>
-          <div class="customer-sub" style="margin-top:2px">Policy: ${p.policyNumber.slice(-6)}</div>
+          <div class="customer-sub" style="margin-top:2px">${isMultiPolicy ? `${p.policies.length} Policies` : `Policy: ${p.policyNumber.slice(-6)}`}</div>
         </div>
       </div>
 
@@ -176,8 +178,9 @@ function renderCustomerCard(p) {
         <span class="badge ${getSIClass(p)}" title="SI Status">
           ${getSILabel(p)}
         </span>
-        <span class="badge" style="background:#F1F5F9;color:#475569;">
-          ₹${(p.premiumAmount/1000).toFixed(0)}K/yr
+        ${isMultiPolicy ? `<span class="badge multi-policy-badge">×${p.policies.length} Policies</span>` : ''}
+        <span class="badge" style="background:#F1F5F9;color:#475569;" title="${isMultiPolicy ? 'Total across all policies' : ''}">
+          ₹${(totalPremium/1000).toFixed(0)}K/yr
         </span>
       </div>
 
@@ -214,6 +217,13 @@ function renderCustomerCard(p) {
           <span class="sentiment-key">Renewal Sentiment</span>
           <span class="sentiment-val" style="color:${sentStyle.color}">${sentStyle.label}</span>
         </div>
+        ${isMultiPolicy ? `
+        <div class="consolidated-comms-row">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11" style="color:#6366F1;flex-shrink:0"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          <span class="consolidated-key">Consolidated</span>
+          <span class="consolidated-val">${p.policies.length} policies · 1 message</span>
+        </div>
+        ` : ''}
         ${p.promiseToPay ? `
         <div class="ptp-row">
           <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11" style="color:#6366F1;flex-shrink:0"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
@@ -317,7 +327,10 @@ function initCustomers() {
     }
 
     if (activeFilters.premiumMin !== null) {
-      list = list.filter(p => p.premiumAmount > activeFilters.premiumMin);
+      list = list.filter(p => {
+        const total = p.policies ? p.policies.reduce((s, pol) => s + pol.premiumAmount, 0) : p.premiumAmount;
+        return total > activeFilters.premiumMin;
+      });
     }
 
     if (searchQuery) {
@@ -585,14 +598,40 @@ function buildModalContent(p, rec, bucket) {
           </span>
         </div>
         <div class="card-body">
+          ${p.policies && p.policies.length > 1 ? `
+          <div class="multi-policy-panel">
+            <div class="multi-policy-header">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+              <span class="multi-policy-title">Multi-Policy Holder · ${p.policies.length} Policies</span>
+              <span class="consolidated-badge">1 Consolidated Communication</span>
+            </div>
+            <div class="policies-table">
+              <div class="policies-table-head">
+                <span>Policy Number</span><span>Type</span><span>Premium</span><span>Due</span>
+              </div>
+              ${p.policies.map(pol => `
+              <div class="policy-row">
+                <span class="policy-num">${pol.policyNumber}</span>
+                <span class="policy-type">${pol.policyType}</span>
+                <span class="policy-premium">₹${pol.premiumAmount.toLocaleString()}</span>
+                <span class="policy-due">${formatJourneyDay(pol.journeyDay)}</span>
+              </div>`).join('')}
+              <div class="policy-total-row">
+                <span></span><span>Total</span>
+                <span>₹${p.policies.reduce((s, pol) => s + pol.premiumAmount, 0).toLocaleString()}</span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          ` : ''}
           <div class="profile-grid">
             <div>
               <div class="profile-field-label">Policy Type</div>
-              <div class="profile-field-value">${p.policyType}</div>
+              <div class="profile-field-value">${p.policies && p.policies.length > 1 ? p.policies.map(pol => pol.policyType).join(' · ') : p.policyType}</div>
             </div>
             <div>
               <div class="profile-field-label">Annual Premium</div>
-              <div class="profile-field-value">₹${p.premiumAmount.toLocaleString()}</div>
+              <div class="profile-field-value">₹${p.policies && p.policies.length > 1 ? p.policies.reduce((s, pol) => s + pol.premiumAmount, 0).toLocaleString() + ' total' : p.premiumAmount.toLocaleString()}</div>
             </div>
             <div>
               <div class="profile-field-label">Propensity</div>

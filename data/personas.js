@@ -47,6 +47,10 @@ const CUSTOMERS = [
     engagementScore: 92,
     fieldAgent: "Rajiv Sharma (Bangalore North)",
     notes: "Consistent payer for 6 years. SI registered and healthy. No human intervention needed.",
+    policies: [
+      { policyNumber: "SBI-LI-2019-001234", policyType: "Term Life",          premiumAmount: 45000, journeyDay: -45 },
+      { policyNumber: "SBI-LI-2022-008712", policyType: "ULIP (Wealth Builder)", premiumAmount: 32000, journeyDay: -60 }
+    ],
     renewalSentiment: { score: "positive", note: "Consistently reads messages and opens emails. Long-term payer with zero lapses." },
     promiseToPay: null
   },
@@ -125,6 +129,10 @@ const CUSTOMERS = [
     engagementScore: 41,
     fieldAgent: "Farhan Qureshi (Mumbai Central)",
     notes: "Lapsed once in 2022. Currently unresponsive to all digital channels. Needs human call.",
+    policies: [
+      { policyNumber: "SBI-LI-2017-003876", policyType: "Whole Life", premiumAmount: 78000, journeyDay: -15 },
+      { policyNumber: "SBI-LI-2020-009234", policyType: "Term Life",  premiumAmount: 35000, journeyDay: -20 }
+    ],
     renewalSentiment: { score: "negative", note: "Unresponsive across all digital channels since T-15. Previously lapsed in 2022." },
     promiseToPay: null
   },
@@ -204,6 +212,10 @@ const CUSTOMERS = [
     engagementScore: 74,
     fieldAgent: "Krishna Mohan (Hyderabad West)",
     notes: "SI registered. Amber due to account balance dip in Q3 last year. Currently engaged via WhatsApp.",
+    policies: [
+      { policyNumber: "SBI-LI-2020-005621", policyType: "ULIP",       premiumAmount: 60000, journeyDay: -5  },
+      { policyNumber: "SBI-LI-2023-011234", policyType: "Endowment",  premiumAmount: 28000, journeyDay: -15 }
+    ],
     renewalSentiment: { score: "positive", note: "Replied to WhatsApp and engaged with voice reminder. Actively communicating pre-due." },
     promiseToPay: null
   },
@@ -242,6 +254,11 @@ const CUSTOMERS = [
     engagementScore: 98,
     fieldAgent: "Suresh Kumar (Chennai Central)",
     notes: "High-value policy. Green-High. Never lapsed. Minimum touchpoints needed.",
+    policies: [
+      { policyNumber: "SBI-LI-2015-006142", policyType: "Term Life",       premiumAmount: 120000, journeyDay: -60 },
+      { policyNumber: "SBI-LI-2018-007891", policyType: "Jeevan Anand",    premiumAmount:  55000, journeyDay: -30 },
+      { policyNumber: "SBI-LI-2021-013456", policyType: "ULIP (Pension)",  premiumAmount:  38000, journeyDay: -90 }
+    ],
     renewalSentiment: { score: "positive", note: "Reads all communications promptly. High-value customer with perfect payment record." },
     promiseToPay: null
   },
@@ -627,6 +644,10 @@ const CUSTOMERS = [
     engagementScore: 99,
     fieldAgent: "Prateek Jain (Mumbai South)",
     notes: "VIP customer. High premium. Green-High SI. T-60 warm-up phase only. Zero intervention needed.",
+    policies: [
+      { policyNumber: "SBI-LI-2018-016234", policyType: "Term Life",   premiumAmount: 85000, journeyDay: -30 },
+      { policyNumber: "SBI-LI-2022-019876", policyType: "Money Back",  premiumAmount: 42000, journeyDay: -45 }
+    ],
     renewalSentiment: { score: "positive", note: "Opens all communications promptly. VIP customer with zero lapses and healthy SI." },
     promiseToPay: null
   },

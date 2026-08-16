@@ -610,6 +610,100 @@ body {
   gap: 14px;
 }
 
+/* Multi-policy badge on customer card */
+.badge.multi-policy-badge {
+  background: #EDE9FE;
+  color: #4338CA;
+  font-weight: 700;
+}
+
+/* Consolidated comms row on customer card */
+.consolidated-comms-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #EDE9FE;
+}
+.consolidated-key {
+  font-size: 10px;
+  color: #4338CA;
+  font-weight: 700;
+}
+.consolidated-val {
+  font-size: 10px;
+  color: #6366F1;
+  flex: 1;
+}
+
+/* Multi-policy panel in modal */
+.multi-policy-panel {
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
+  border-bottom: 1px solid #DDD6FE;
+}
+.multi-policy-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  color: #4338CA;
+}
+.multi-policy-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4338CA;
+  flex: 1;
+}
+.consolidated-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 20px;
+  background: #6366F1;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.policies-table {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.policies-table-head {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr 1fr 1fr;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #7C3AED;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #C4B5FD;
+}
+.policy-row {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr 1fr 1fr;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #E0D9FF;
+}
+.policy-num  { font-size: 10px; color: var(--text-3); font-family: monospace; }
+.policy-type { font-size: 11px; font-weight: 600; color: var(--text-1); }
+.policy-premium { font-size: 11px; font-weight: 700; color: var(--text-1); }
+.policy-due  { font-size: 10px; color: var(--text-2); }
+.policy-total-row {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr 1fr 1fr;
+  gap: 8px;
+  padding: 5px 0 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: #4338CA;
+}
+
 /* Customer Card */
 .customer-card {
   background: var(--card);
