@@ -334,6 +334,21 @@ function initPersonas() {
       ? list.map(renderPersonaCard).join('')
       : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">No personas match your filters.</div>';
     document.getElementById('persona-count').textContent = list.length + ' personas';
+
+    const totalRisk = list.reduce((sum, p) => sum + (p.premiumAmount || 0), 0);
+    const riskEl = document.getElementById('risk-total');
+    const riskSub = document.getElementById('risk-sub');
+    if (riskEl) {
+      if (totalRisk >= 10000000) {
+        riskEl.textContent = '₹' + (totalRisk / 10000000).toFixed(2) + ' Cr';
+      } else if (totalRisk >= 100000) {
+        riskEl.textContent = '₹' + (totalRisk / 100000).toFixed(2) + ' L';
+      } else {
+        riskEl.textContent = '₹' + totalRisk.toLocaleString('en-IN');
+      }
+    }
+    if (riskSub) riskSub.textContent = 'across ' + list.length + ' customer' + (list.length !== 1 ? 's' : '');
+
     updateBadge();
   }
 

@@ -419,6 +419,38 @@ body {
 .signal-desc { font-size: 11px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .signal-time { font-size: 10px; color: var(--text-4); flex-shrink: 0; }
 
+/* ===================== RISK TILE ===================== */
+.risk-tile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #FEF2F2 0%, #FFF7ED 100%);
+  border: 1.5px solid #FECACA;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+.risk-tile-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #DC2626;
+  flex-shrink: 0;
+}
+.risk-tile-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #B91C1C;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+}
+.risk-tile-sub {
+  font-size: 12px;
+  color: #EF4444;
+  opacity: 0.8;
+}
+
 /* ===================== PERSONA GRID ===================== */
 .filter-bar {
   display: flex;
