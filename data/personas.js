@@ -1,10 +1,10 @@
 // =============================================================
-// data/customers.js — SBI Life AI Engagement Platform
-// Colleague: add/modify customers here. Each object maps to one
-// policyholder card in the Customers view.
+// data/personas.js — SBI Life AI Engagement Platform
+// Colleague: add/modify personas here. Each object maps to one
+// policyholder card in the Personas view.
 // =============================================================
 
-const CUSTOMERS = [
+const PERSONAS = [
   {
     id: 1,
     name: "Ramesh Kumar",
@@ -48,10 +48,6 @@ const CUSTOMERS = [
     engagementScore: 92,
     fieldAgent: "Rajiv Sharma (Bangalore North)",
     notes: "Consistent payer for 6 years. SI registered and healthy. No human intervention needed.",
-    policies: [
-      { policyNumber: "SBI-LI-2019-001234", policyType: "Term Life",          premiumAmount: 45000, journeyDay: -45 },
-      { policyNumber: "SBI-LI-2022-008712", policyType: "ULIP (Wealth Builder)", premiumAmount: 32000, journeyDay: -60 }
-    ],
     renewalSentiment: { score: "positive", note: "Consistently reads messages and opens emails. Long-term payer with zero lapses." },
     promiseToPay: null
   },
@@ -130,10 +126,6 @@ const CUSTOMERS = [
     engagementScore: 41,
     fieldAgent: "Farhan Qureshi (Mumbai Central)",
     notes: "Lapsed once in 2022. Currently unresponsive to all digital channels. Needs human call.",
-    policies: [
-      { policyNumber: "SBI-LI-2017-003876", policyType: "Whole Life", premiumAmount: 78000, journeyDay: -15 },
-      { policyNumber: "SBI-LI-2020-009234", policyType: "Term Life",  premiumAmount: 35000, journeyDay: -20 }
-    ],
     renewalSentiment: { score: "negative", note: "Unresponsive across all digital channels since T-15. Previously lapsed in 2022." },
     promiseToPay: null
   },
@@ -214,10 +206,6 @@ const CUSTOMERS = [
     engagementScore: 74,
     fieldAgent: "Krishna Mohan (Hyderabad West)",
     notes: "SI registered. Amber due to account balance dip in Q3 last year. Currently engaged via WhatsApp.",
-    policies: [
-      { policyNumber: "SBI-LI-2020-005621", policyType: "ULIP",       premiumAmount: 60000, journeyDay: -5  },
-      { policyNumber: "SBI-LI-2023-011234", policyType: "Endowment",  premiumAmount: 28000, journeyDay: -15 }
-    ],
     renewalSentiment: { score: "positive", note: "Replied to WhatsApp and engaged with voice reminder. Actively communicating pre-due." },
     promiseToPay: null
   },
@@ -257,11 +245,6 @@ const CUSTOMERS = [
     engagementScore: 98,
     fieldAgent: "Suresh Kumar (Chennai Central)",
     notes: "High-value policy. Green-High. Never lapsed. Minimum touchpoints needed.",
-    policies: [
-      { policyNumber: "SBI-LI-2015-006142", policyType: "Term Life",       premiumAmount: 120000, journeyDay: -60 },
-      { policyNumber: "SBI-LI-2018-007891", policyType: "Jeevan Anand",    premiumAmount:  55000, journeyDay: -30 },
-      { policyNumber: "SBI-LI-2021-013456", policyType: "ULIP (Pension)",  premiumAmount:  38000, journeyDay: -90 }
-    ],
     renewalSentiment: { score: "positive", note: "Reads all communications promptly. High-value customer with perfect payment record." },
     promiseToPay: null
   },
@@ -649,10 +632,6 @@ const CUSTOMERS = [
     engagementScore: 99,
     fieldAgent: "Prateek Jain (Mumbai South)",
     notes: "VIP customer. High premium. Green-High SI. T-60 warm-up phase only. Zero intervention needed.",
-    policies: [
-      { policyNumber: "SBI-LI-2018-016234", policyType: "Term Life",   premiumAmount: 85000, journeyDay: -30 },
-      { policyNumber: "SBI-LI-2022-019876", policyType: "Money Back",  premiumAmount: 42000, journeyDay: -45 }
-    ],
     renewalSentiment: { score: "positive", note: "Opens all communications promptly. VIP customer with zero lapses and healthy SI." },
     promiseToPay: null
   },
@@ -821,7 +800,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "BD",
     avatarColor: "#B91C1C",
-    city: "Guwahati", state: "Assam",
+    city: "Mysuru", state: "Karnataka",
     occupation: "Farmer",
     incomeLabel: "₹2.1L/yr",
     policyNumber: "SBI-LI-2017-201001",
@@ -834,7 +813,7 @@ const CUSTOMERS = [
     journeyDay: -7,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Assamese",
+    preferredLanguage: "Kannada",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -848,7 +827,7 @@ const CUSTOMERS = [
       { daysAgo: 5, channel: "Voice Bot", event: "Voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 11,
-    fieldAgent: "Ranjit Bora (Guwahati Rural)",
+    fieldAgent: "Manjunath Gowda (Mysuru Rural)",
     notes: "2 prior lapses. No WhatsApp or email. Unreachable digitally. Field agent visit critical at T-7.",
     renewalSentiment: { score: "negative", note: "Completely unreachable across all digital channels. Field agent is only viable path." },
     promiseToPay: null
@@ -860,7 +839,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "SM",
     avatarColor: "#991B1B",
-    city: "Kolkata", state: "West Bengal",
+    city: "Nagpur", state: "Maharashtra",
     occupation: "Handloom Weaver",
     incomeLabel: "₹2.8L/yr",
     policyNumber: "SBI-LI-2016-202002",
@@ -873,7 +852,7 @@ const CUSTOMERS = [
     journeyDay: -3,
     previousLapses: 3,
     digitalEngagement: "low",
-    preferredLanguage: "Bengali",
+    preferredLanguage: "Marathi",
     whatsappOptIn: true,
     emailOptIn: false,
     signals: {
@@ -887,7 +866,7 @@ const CUSTOMERS = [
       { daysAgo: 3, channel: "SMS", event: "T-6 reminder — delivered, no action", engaged: false, icon: "sms" }
     ],
     engagementScore: 9,
-    fieldAgent: "Soumen Ghosh (Kolkata North)",
+    fieldAgent: "Prakash Wagh (Nagpur East)",
     notes: "3 prior lapses. WhatsApp delivered but unread consistently. T-3 urgent escalation needed.",
     renewalSentiment: { score: "negative", note: "Ignores all reminders. 3 lapses make this high-risk with only 3 days to due date." },
     promiseToPay: null
@@ -899,7 +878,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "PK",
     avatarColor: "#7F1D1D",
-    city: "Patna", state: "Bihar",
+    city: "Surat", state: "Gujarat",
     occupation: "Domestic Worker",
     incomeLabel: "₹1.8L/yr",
     policyNumber: "SBI-LI-2019-203003",
@@ -912,7 +891,7 @@ const CUSTOMERS = [
     journeyDay: -5,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Hindi",
+    preferredLanguage: "Gujarati",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -926,7 +905,7 @@ const CUSTOMERS = [
       { daysAgo: 5, channel: "Voice Bot", event: "Voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 7,
-    fieldAgent: "Rakesh Kumar (Patna West)",
+    fieldAgent: "Nilesh Patel (Surat North)",
     notes: "Verbally refused — financial hardship cited. 2 prior lapses. Revival scheme discussion needed urgently.",
     renewalSentiment: { score: "negative", note: "Refused payment on latest call citing financial difficulty. High lapse probability." },
     promiseToPay: null
@@ -938,7 +917,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "RO",
     avatarColor: "#C2410C",
-    city: "Ranchi", state: "Jharkhand",
+    city: "Jodhpur", state: "Rajasthan",
     occupation: "Coal Mine Helper",
     incomeLabel: "₹3.5L/yr",
     policyNumber: "SBI-LI-2018-204004",
@@ -965,7 +944,7 @@ const CUSTOMERS = [
       { daysAgo: 5, channel: "Call Center", event: "T-15 call — no answer, 3 attempts", engaged: false, icon: "cc" }
     ],
     engagementScore: 13,
-    fieldAgent: "Sunil Ekka (Ranchi Rural)",
+    fieldAgent: "Bharat Sharma (Jodhpur Rural)",
     notes: "Unresponsive across all channels. Works night shifts — daytime calls likely missed. Try evening slot.",
     renewalSentiment: { score: "negative", note: "No response to any channel since T-15. Night-shift schedule may be the barrier." },
     promiseToPay: null
@@ -977,7 +956,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "GS",
     avatarColor: "#9A3412",
-    city: "Raipur", state: "Chhattisgarh",
+    city: "Gwalior", state: "Madhya Pradesh",
     occupation: "Beedi Roller",
     incomeLabel: "₹1.5L/yr",
     policyNumber: "SBI-LI-2015-205005",
@@ -1004,7 +983,7 @@ const CUSTOMERS = [
       { daysAgo: 10, channel: "SMS", event: "T-25 reminder — delivered, no action", engaged: false, icon: "sms" }
     ],
     engagementScore: 16,
-    fieldAgent: "Priya Soni (Raipur South)",
+    fieldAgent: "Priya Gupta (Gwalior South)",
     notes: "3 prior lapses but answered today and promised. Low credibility given history — follow up at T-5.",
     renewalSentiment: { score: "neutral", note: "Verbal promise given, but 3 past lapses reduce confidence significantly." },
     promiseToPay: { date: "2026-11-30", amount: 51000, status: "pending", collectedBy: "Call Center" }
@@ -1016,7 +995,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "GS",
     avatarColor: "#92400E",
-    city: "Amritsar", state: "Punjab",
+    city: "Gurgaon", state: "Delhi NCR",
     occupation: "Truck Driver",
     incomeLabel: "₹5.5L/yr",
     policyNumber: "SBI-LI-2016-206006",
@@ -1044,7 +1023,7 @@ const CUSTOMERS = [
       { daysAgo: 4, channel: "Voice Bot", event: "T-11 voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 18,
-    fieldAgent: "Kulwinder Dhaliwal (Amritsar Rural)",
+    fieldAgent: "Kulwinder Dhaliwal (Gurgaon)",
     notes: "2-policy holder. On long-haul route — unreachable mid-journey. High-value account. Escalate via Punjabi-speaking agent.",
     renewalSentiment: { score: "negative", note: "Unreachable on current route. High-value 2-policy account at risk with T-7 and no engagement." },
     promiseToPay: null
@@ -1056,7 +1035,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "NY",
     avatarColor: "#78350F",
-    city: "Rohtak", state: "Haryana",
+    city: "Agra", state: "Uttar Pradesh",
     occupation: "Construction Foreman",
     incomeLabel: "₹3.8L/yr",
     policyNumber: "SBI-LI-2018-207007",
@@ -1069,7 +1048,7 @@ const CUSTOMERS = [
     journeyDay: -2,
     previousLapses: 2,
     digitalEngagement: "low",
-    preferredLanguage: "Haryanvi",
+    preferredLanguage: "Hindi",
     whatsappOptIn: true,
     emailOptIn: false,
     signals: {
@@ -1083,7 +1062,7 @@ const CUSTOMERS = [
       { daysAgo: 1, channel: "Call Center", event: "T-3 call — no answer, 2 attempts", engaged: false, icon: "cc" }
     ],
     engagementScore: 15,
-    fieldAgent: "Ajay Hooda (Rohtak)",
+    fieldAgent: "Ajay Singh (Agra)",
     notes: "Reads WhatsApp but doesn't act. T-2 — critical window. Human call at construction site needed.",
     renewalSentiment: { score: "negative", note: "Reads messages but no follow-through. 2 prior lapses and only 2 days to due date." },
     promiseToPay: null
@@ -1095,7 +1074,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "PD",
     avatarColor: "#BE185D",
-    city: "Shimla", state: "Himachal Pradesh",
+    city: "Kozhikode", state: "Kerala",
     occupation: "Tea Stall Owner",
     incomeLabel: "₹2.4L/yr",
     policyNumber: "SBI-LI-2014-208008",
@@ -1108,7 +1087,7 @@ const CUSTOMERS = [
     journeyDay: -30,
     previousLapses: 4,
     digitalEngagement: "very-low",
-    preferredLanguage: "Pahari",
+    preferredLanguage: "Malayalam",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1122,7 +1101,7 @@ const CUSTOMERS = [
       { daysAgo: 8, channel: "Voice Bot", event: "Voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 10,
-    fieldAgent: "Suresh Thakur (Shimla Hills)",
+    fieldAgent: "Suresh Nair (Kozhikode North)",
     notes: "4 prior lapses — highest risk. Remote location limits outreach. Monthly mode switch discussion warranted.",
     renewalSentiment: { score: "negative", note: "4 prior lapses with no digital access. Remoteness limits outreach. High lapse probability." },
     promiseToPay: null
@@ -1134,7 +1113,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "MR",
     avatarColor: "#6D28D9",
-    city: "Dehradun", state: "Uttarakhand",
+    city: "Madurai", state: "Tamil Nadu",
     occupation: "Security Guard",
     incomeLabel: "₹2.6L/yr",
     policyNumber: "SBI-LI-2019-209009",
@@ -1147,7 +1126,7 @@ const CUSTOMERS = [
     journeyDay: -45,
     previousLapses: 3,
     digitalEngagement: "low",
-    preferredLanguage: "Garhwali",
+    preferredLanguage: "Tamil",
     whatsappOptIn: true,
     emailOptIn: false,
     signals: {
@@ -1161,7 +1140,7 @@ const CUSTOMERS = [
       { daysAgo: 15, channel: "Call Center", event: "Call — no answer, works night shift", engaged: false, icon: "cc" }
     ],
     engagementScore: 12,
-    fieldAgent: "Deepak Negi (Dehradun North)",
+    fieldAgent: "Deepak Murugan (Madurai South)",
     notes: "3 lapses. Night-shift guard — daytime calls not effective. Start warm-up cadence early. SI registration push needed.",
     renewalSentiment: { score: "negative", note: "Night-shift schedule blocks daytime outreach. 3 lapses with no digital engagement trend." },
     promiseToPay: null
@@ -1173,7 +1152,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "AD",
     avatarColor: "#0E7490",
-    city: "Agartala", state: "Tripura",
+    city: "Warangal", state: "Telangana",
     occupation: "Anganwadi Worker",
     incomeLabel: "₹1.6L/yr",
     policyNumber: "SBI-LI-2020-210010",
@@ -1186,7 +1165,7 @@ const CUSTOMERS = [
     journeyDay: -1,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Bengali",
+    preferredLanguage: "Telugu",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1200,7 +1179,7 @@ const CUSTOMERS = [
       { daysAgo: 2, channel: "Voice Bot", event: "T-3 voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 8,
-    fieldAgent: "Sujan Das (Agartala West)",
+    fieldAgent: "Sujan Reddy (Warangal West)",
     notes: "T-1 and completely unreachable. 2 prior lapses. Last-ditch field agent contact needed today.",
     renewalSentiment: { score: "negative", note: "T-1 with zero response to any channel. Lapse highly probable without field intervention." },
     promiseToPay: null
@@ -1212,7 +1191,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "DP",
     avatarColor: "#065F46",
-    city: "Bhubaneswar", state: "Odisha",
+    city: "Margao", state: "Goa",
     occupation: "Fisherman",
     incomeLabel: "₹2.2L/yr",
     policyNumber: "SBI-LI-2017-211011",
@@ -1225,7 +1204,7 @@ const CUSTOMERS = [
     journeyDay: -3,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Odia",
+    preferredLanguage: "Konkani",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1239,7 +1218,7 @@ const CUSTOMERS = [
       { daysAgo: 4, channel: "Voice Bot", event: "Voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 10,
-    fieldAgent: "Bijay Mohanty (Bhubaneswar Coastal)",
+    fieldAgent: "Bento Fernandes (Margao South)",
     notes: "Fishing schedule means unavailability early mornings. Call between 5–7 PM. T-3 and unresponsive.",
     renewalSentiment: { score: "negative", note: "Fisherman's schedule creates contact gaps. 2 prior lapses with no digital engagement." },
     promiseToPay: null
@@ -1251,7 +1230,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "KR",
     avatarColor: "#1E3A5F",
-    city: "Vijayawada", state: "Andhra Pradesh",
+    city: "Coimbatore", state: "Tamil Nadu",
     occupation: "Vegetable Vendor",
     incomeLabel: "₹1.9L/yr",
     policyNumber: "SBI-LI-2014-212012",
@@ -1264,7 +1243,7 @@ const CUSTOMERS = [
     journeyDay: -7,
     previousLapses: 4,
     digitalEngagement: "very-low",
-    preferredLanguage: "Telugu",
+    preferredLanguage: "Tamil",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1278,7 +1257,7 @@ const CUSTOMERS = [
       { daysAgo: 6, channel: "Voice Bot", event: "T-13 voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 6,
-    fieldAgent: "Ramaiah (Vijayawada Rural)",
+    fieldAgent: "Ramaiah Murugan (Coimbatore West)",
     notes: "4 lapses and active refusal. Telugu-speaking specialist required. Check micro-payment / EMI option eligibility.",
     renewalSentiment: { score: "negative", note: "Verbally refused due to financial hardship. 4 prior lapses — extremely high lapse risk." },
     promiseToPay: null
@@ -1290,7 +1269,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "RK",
     avatarColor: "#5B21B6",
-    city: "Chandigarh", state: "Chandigarh",
+    city: "Noida", state: "Delhi NCR",
     occupation: "Roadside Vendor",
     incomeLabel: "₹2.3L/yr",
     policyNumber: "SBI-LI-2013-213013",
@@ -1316,7 +1295,7 @@ const CUSTOMERS = [
       { daysAgo: 0, channel: "WhatsApp", event: "T-60 warm-up sent — unread", engaged: false, icon: "wa" }
     ],
     engagementScore: 17,
-    fieldAgent: "Harpreet Gill (Chandigarh Sector 22)",
+    fieldAgent: "Harpreet Gill (Noida Sector 18)",
     notes: "2 prior lapses. T-60 warm-up phase. SI registration push most critical action now — prevents future risk.",
     renewalSentiment: { score: "negative", note: "Early in cycle but previous lapses demand proactive SI registration push immediately." },
     promiseToPay: null
@@ -1328,7 +1307,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "AL",
     avatarColor: "#854D0E",
-    city: "Jammu", state: "Jammu & Kashmir",
+    city: "Udaipur", state: "Rajasthan",
     occupation: "Taxi Driver",
     incomeLabel: "₹3.1L/yr",
     policyNumber: "SBI-LI-2016-214014",
@@ -1341,7 +1320,7 @@ const CUSTOMERS = [
     journeyDay: -30,
     previousLapses: 2,
     digitalEngagement: "low",
-    preferredLanguage: "Dogri",
+    preferredLanguage: "Hindi",
     whatsappOptIn: true,
     emailOptIn: false,
     signals: {
@@ -1355,7 +1334,7 @@ const CUSTOMERS = [
       { daysAgo: 5, channel: "SMS", event: "T-35 warm-up SMS — delivered", engaged: false, icon: "sms" }
     ],
     engagementScore: 19,
-    fieldAgent: "Vijay Kumar (Jammu City)",
+    fieldAgent: "Vijay Sharma (Udaipur City)",
     notes: "Reads WhatsApp but doesn't act. Taxi driver — unreachable while on route. Evening call slot recommended.",
     renewalSentiment: { score: "negative", note: "Opens WhatsApp but takes no action. Route schedule makes daytime calls ineffective." },
     promiseToPay: null
@@ -1406,7 +1385,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "TA",
     avatarColor: "#1C4532",
-    city: "Kohima", state: "Nagaland",
+    city: "Nizamabad", state: "Telangana",
     occupation: "Small Trader",
     incomeLabel: "₹2.9L/yr",
     policyNumber: "SBI-LI-2019-216016",
@@ -1419,7 +1398,7 @@ const CUSTOMERS = [
     journeyDay: -10,
     previousLapses: 2,
     digitalEngagement: "low",
-    preferredLanguage: "Nagamese",
+    preferredLanguage: "Telugu",
     whatsappOptIn: true,
     emailOptIn: false,
     signals: {
@@ -1433,7 +1412,7 @@ const CUSTOMERS = [
       { daysAgo: 5, channel: "SMS", event: "T-15 reminder — delivered", engaged: false, icon: "sms" }
     ],
     engagementScore: 15,
-    fieldAgent: "Imtizunglo Longchar (Kohima)",
+    fieldAgent: "Ravi Kumar (Nizamabad)",
     notes: "Remote hill location. Network connectivity issues likely. Nagamese-speaking agent recommended.",
     renewalSentiment: { score: "negative", note: "Network issues in hilly terrain reduce reachability. 2 lapses add urgency at T-10." },
     promiseToPay: null
@@ -1445,7 +1424,7 @@ const CUSTOMERS = [
     gender: "Female",
     initials: "ML",
     avatarColor: "#1E1B4B",
-    city: "Shillong", state: "Meghalaya",
+    city: "Thrissur", state: "Kerala",
     occupation: "Domestic Worker",
     incomeLabel: "₹1.7L/yr",
     policyNumber: "SBI-LI-2018-217017",
@@ -1458,7 +1437,7 @@ const CUSTOMERS = [
     journeyDay: -5,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Khasi",
+    preferredLanguage: "Malayalam",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1472,7 +1451,7 @@ const CUSTOMERS = [
       { daysAgo: 4, channel: "Voice Bot", event: "T-9 voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 20,
-    fieldAgent: "Banshanlang Mawrie (Shillong East)",
+    fieldAgent: "Arun Menon (Thrissur East)",
     notes: "Answered call and promised payment this week. Khasi-speaking agent helped. Follow up strictly at T+0.",
     renewalSentiment: { score: "neutral", note: "Verbal promise secured via Khasi-speaking agent. 2 lapses make follow-through uncertain." },
     promiseToPay: { date: "2026-11-26", amount: 52000, status: "pending", collectedBy: "Call Center" }
@@ -1484,7 +1463,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "IS",
     avatarColor: "#3F3F46",
-    city: "Imphal", state: "Manipur",
+    city: "Nashik", state: "Maharashtra",
     occupation: "Auto-Rickshaw Driver",
     incomeLabel: "₹2.4L/yr",
     policyNumber: "SBI-LI-2017-218018",
@@ -1497,7 +1476,7 @@ const CUSTOMERS = [
     journeyDay: -2,
     previousLapses: 3,
     digitalEngagement: "low",
-    preferredLanguage: "Meitei",
+    preferredLanguage: "Marathi",
     whatsappOptIn: true,
     emailOptIn: false,
     signals: {
@@ -1511,7 +1490,7 @@ const CUSTOMERS = [
       { daysAgo: 1, channel: "Call Center", event: "T-3 call — no answer", engaged: false, icon: "cc" }
     ],
     engagementScore: 11,
-    fieldAgent: "Ningombam Ranjit (Imphal West)",
+    fieldAgent: "Santosh Pawar (Nashik West)",
     notes: "T-2 with 3 prior lapses — critical. Reads WhatsApp but no action. Human outreach in Meitei language essential today.",
     renewalSentiment: { score: "negative", note: "T-2, reads messages but ignores them. 3 lapses. Lapse near-certain without today's intervention." },
     promiseToPay: null
@@ -1523,7 +1502,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "DL",
     avatarColor: "#134E4A",
-    city: "Gangtok", state: "Sikkim",
+    city: "Vadodara", state: "Gujarat",
     occupation: "Vegetable Farmer",
     incomeLabel: "₹1.9L/yr",
     policyNumber: "SBI-LI-2020-219019",
@@ -1536,7 +1515,7 @@ const CUSTOMERS = [
     journeyDay: -7,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Nepali",
+    preferredLanguage: "Gujarati",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1550,7 +1529,7 @@ const CUSTOMERS = [
       { daysAgo: 4, channel: "Voice Bot", event: "T-11 voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 9,
-    fieldAgent: "Tshering Bhutia (Gangtok Rural)",
+    fieldAgent: "Dinesh Shah (Vadodara Rural)",
     notes: "Works in fields — unreachable mornings. Evening slots with Nepali-speaking agent only viable approach.",
     renewalSentiment: { score: "negative", note: "Remote farming schedule blocks all contact attempts. 2 lapses elevate risk significantly." },
     promiseToPay: null
@@ -1562,7 +1541,7 @@ const CUSTOMERS = [
     gender: "Male",
     initials: "NT",
     avatarColor: "#1A2E05",
-    city: "Itanagar", state: "Arunachal Pradesh",
+    city: "Jabalpur", state: "Madhya Pradesh",
     occupation: "Forest Range Helper",
     incomeLabel: "₹4.2L/yr",
     policyNumber: "SBI-LI-2018-220020",
@@ -1576,7 +1555,7 @@ const CUSTOMERS = [
     journeyDay: -15,
     previousLapses: 2,
     digitalEngagement: "very-low",
-    preferredLanguage: "Nyishi",
+    preferredLanguage: "Hindi",
     whatsappOptIn: false,
     emailOptIn: false,
     signals: {
@@ -1590,7 +1569,7 @@ const CUSTOMERS = [
       { daysAgo: 5, channel: "Voice Bot", event: "T-20 voice call — no answer", engaged: false, icon: "voice" }
     ],
     engagementScore: 13,
-    fieldAgent: "Tage Tada (Itanagar District)",
+    fieldAgent: "Suresh Tiwari (Jabalpur District)",
     notes: "2-policy holder — high-value account. Forest patrol duties mean no connectivity for days. Escalate via district office intermediary.",
     renewalSentiment: { score: "negative", note: "High-value 2-policy account with no digital access and unreachable during forest patrols." },
     promiseToPay: null
