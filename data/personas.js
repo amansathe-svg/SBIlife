@@ -1575,3 +1575,5 @@ const PERSONAS = [
     promiseToPay: null
   }
 ];
+
+const CUSTOMERS = PERSONAS;
