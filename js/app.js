@@ -360,7 +360,7 @@ function initCustomers() {
         riskEl.textContent = '₹' + totalRisk.toLocaleString('en-IN');
       }
     }
-    if (riskSub) riskSub.textContent = 'across ' + list.length + ' customer' + (list.length !== 1 ? 's' : '');
+    if (riskSub) riskSub.textContent = 'across ' + list.length + ' selected customer' + (list.length !== 1 ? 's' : '');
 
     updateBadge();
   }
